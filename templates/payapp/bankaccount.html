@@ -1,0 +1,314 @@
+{% extends 'dashboard_nav.html' %}
+{% load static %}
+{% block content %}
+    
+
+      
+        <!-- Content -->
+        <div id="content" class="py-4">
+            <div class="container">
+                <div class="row">
+                    {% include '_leftbar.html' %}
+
+                    <!-- Middle Panel  -->
+                    <div class="col-lg-9">
+                        <h2 class="admin-heading">
+                            Banks account(for payments) <a href="{% url 'add_bank' %}" class="order-card"> <i
+                                    class="fas fa-plus"></i> Add New </a>
+                        </h2>
+                        <!-- Credit or Debit Cards  -->
+                        <div class="infoItems bg-offwhite">
+                            <div class="row">
+                                
+                                {% comment %} {% if banks %} {% endcomment %}
+                                    
+                                
+                                    
+                                <div class="col-12">
+                                    <h3>Current cards ({{banks.count}})</h3>
+                                </div>
+                                {% for bank in banks %}
+                                <div class="col-12 col-sm-6 col-lg-4 cardBox">
+                                    <div class="account-card account-card-primary">
+                                        <p class="pirotry text-right">Primery</p>
+                                        <div class="row">
+                                            <h3 class="card-number col-12">{{ bank.bank_name}} </h3>
+                                            <p class="card-number col-12">XXXXXXXXXXXX{{bank.account_number|slice:"-5"}}</p>
+                                        </div>
+                                        <div class="row"></div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p class="card-holder-name">{{user_profile.user.first_name.capitalize}} {{user_profile.user.last_name.capitalize}}</p>
+                                                <p class="text-success">Approved</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <i class="fas fa-university"></i>
+                                            </div>
+                                        </div>
+                                        {% comment %} <div class="account-card-overlay">
+                                            <a href="#" data-target="#edit-card-details"
+                                                class="text-light btn-link pbtn" data-id="edit-card-details">
+                                                <span class="mr-1"><i class="fas fa-edit"></i></span>Edit</a>
+                                            <a href="#" class="text-light btn-link mx-2">
+                                                <span class="mr-1"><i class="fas fa-minus-circle"></i></span>Delete</a>
+                                        </div> {% endcomment %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                               {% comment %} {% else %} {% endcomment %}
+                                <div class="col-12 col-sm-6 col-lg-4 cardBox">
+                                    <div class="account-card account-card-primary text-center p-4">
+                                        <a href="{% url 'add_bank' %}" 
+                                            class="account-card-new d-flex align-items-center btn-link ">
+                                            <p class="text-center">
+                                                <span class="text-3"><i class="fas fa-plus-circle"></i></span>
+                                                <span class="d-block">Add  Bank</span>
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% comment %} {% endif %} {% endcomment %}
+                                <div class="col-12 col-sm-6 col-lg-4 cardBox">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Edit Card info  -->
+                        <div id="edit-card-details" class="accord bg-offwhite mt-3 p-3">
+                            <div class="content-edit-area">
+                                <div class="edit-header">
+                                    <h5 class="title">Update Card</h5>
+                                    <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="edit-content">
+                                    <form id="update-card" method="post">
+                                        <div class="form-group">
+                                            <label for="edircardNumber">Your Card Number</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><img class="ml-auto"
+                                                            src="images/visa.png" alt="visa" title="" /></span>
+                                                </div>
+                                                <input type="text" class="form-control" data-card-form="edircardNumber"
+                                                    id="edircardNumber" disabled value="XXXXXXXXXXXX4623"
+                                                    placeholder="Card Number" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="edit-card-holder-name">Card Holder Name</label>
+                                            <input type="text" class="form-control"
+                                                data-card-form="edit-card-holder-name" id="edit-card-holder-name"
+                                                required value="Sohne Due" placeholder="Card Holder Name" />
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="edit-expire-name">Expiry Date</label>
+                                                    <input id="edit-expire-name" type="text" class="form-control"
+                                                        data-card-form="edit-expire-name" required value="05/25"
+                                                        placeholder="MM/YY" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="edit-cvv-number">CVV Number
+                                                        <span class="text-info ml-1" data-toggle="tooltip"
+                                                            data-original-title="For this youre credit the three-digit CVV number is printed on the signature panel on the back of the card immediately after the card's account number."><i
+                                                                class="fas fa-question-circle"></i></span></label>
+                                                    <input id="edit-cvv-number" type="password" class="form-control"
+                                                        data-card-form="edit-cvv-number" required value="321"
+                                                        placeholder="CVV (3 digits)" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">Password</label>
+                                                    <input type="password" class="form-control"
+                                                        id="exampleInputPassword1" placeholder="Password" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">Security question</label>
+                                                    <input type="password" class="form-control"
+                                                        id="exampleInputPassword1" placeholder="Security question" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button class="btn btn-default d-block">
+                                            <span>Update Card</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Edit Card info End -->
+
+                        <!-- Add New Card info  -->
+                        <div id="add-new-card" class="accord bg-offwhite mt-3 p-3">
+                            <div class="content-edit-area">
+                                <div class="edit-header">
+                                    <h5 class="title">Add a Card</h5>
+                                    <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="edit-content">
+                                    <form id="add-Card" method="post">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="your-card-provider">Your Card Provider</label>
+                                                    <select id="your-card-provider" class="custom-select" required="">
+                                                        <option value="01">Your Card Provider</option>
+                                                        <option value="02">Visa</option>
+                                                        <option value="03">MasterCard</option>
+                                                        <option value="04">American Express</option>
+                                                        <option value="05">Discover</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="you-card-type">Card Type</label>
+                                                    <select id="you-card-type" class="custom-select" required="">
+                                                        <option value="">Card Type</option>
+                                                        <option value="debit">Debit</option>
+                                                        <option value="Credit">Credit</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cardNumber">Card Number</label>
+                                            <input type="text" class="form-control" data-bv-field="cardnumber"
+                                                id="cardNumber" required value="" placeholder="Card Number" />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="expiryDate">Expiry Date</label>
+                                                    <input id="expiryDate" type="text" class="form-control"
+                                                        data-bv-field="expiryDate" required value=""
+                                                        placeholder="MM/YY" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="cvvNumber">CVV
+                                                        <span class="text-info ml-1" data-toggle="tooltip"
+                                                            data-original-title="For Visa/Mastercard, the three-digit CVV number is printed on the signature panel on the back of the card immediately after the card's account number. For American Express, the four-digit CVV number is printed on the front of the card above the card account number."><i
+                                                                class="fas fa-question-circle"></i></span></label>
+                                                    <input id="cvvNumber" type="password" class="form-control"
+                                                        data-bv-field="cvvnumber" required value=""
+                                                        placeholder="CVV (3 digits)" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">Password</label>
+                                                    <input type="password" class="form-control"
+                                                        id="exampleInputPassword1" placeholder="Password" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">Security question</label>
+                                                    <input type="password" class="form-control"
+                                                        id="exampleInputPassword1" placeholder="Security question" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-default btn-center btn-block">
+                                            <span class="bh"></span>
+                                            <span>Add Card</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add New Card info End -->
+
+                        <!-- Add New Card Details Modal -->
+                        <div id="add-new-card-details" class="modal fade" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title font-weight-400">Add a Card</h5>
+                                        <button type="button" class="close font-weight-400" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body p-4">
+                                        <form id="addCard" method="post">
+                                            <div class="btn-group d-flex btn-group-toggle mb-3" data-toggle="buttons">
+                                                <label
+                                                    class="btn btn-outline-secondary btn-sm shadow-none w-100 active">
+                                                    <input type="radio" name="options" id="option1" checked />
+                                                    Debit
+                                                </label>
+                                                <label class="btn btn-outline-secondary btn-sm shadow-none w-100">
+                                                    <input type="radio" name="options" id="option2" />
+                                                    Credit
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cardType">Card Type</label>
+                                                <select id="cardType" class="custom-select" required="">
+                                                    <option value="">Card Type</option>
+                                                    <option>Visa</option>
+                                                    <option>MasterCard</option>
+                                                    <option>American Express</option>
+                                                    <option>Discover</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cardNumber">Card Number</label>
+                                                <input type="text" class="form-control" data-bv-field="cardnumber"
+                                                    id="cardNumber" required value="" placeholder="Card Number" />
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="expiryDate">Expiry Date</label>
+                                                        <input id="expiryDate" type="text" class="form-control"
+                                                            data-bv-field="expiryDate" required value=""
+                                                            placeholder="MM/YY" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="cvvNumber">CVV
+                                                            <span class="text-info ml-1" data-toggle="tooltip"
+                                                                data-original-title="For Visa/Mastercard, the three-digit CVV number is printed on the signature panel on the back of the card immediately after the card's account number. For American Express, the four-digit CVV number is printed on the front of the card above the card account number."><i
+                                                                    class="fas fa-question-circle"></i></span></label>
+                                                        <input id="cvvNumber" type="password" class="form-control"
+                                                            data-bv-field="cvvnumber" required value=""
+                                                            placeholder="CVV (3 digits)" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cardHolderName">Card Holder Name</label>
+                                                <input type="text" class="form-control" data-bv-field="cardholdername"
+                                                    id="cardHolderName" required value=""
+                                                    placeholder="Card Holder Name" />
+                                            </div>
+                                            <button class="btn btn-default btn-center btn-block">
+                                                <span class="bh"></span>
+                                                <span>Add Card</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Credit or Debit Cards End -->
+                    </div>
+                    <!-- Middle Panel End -->
+                </div>
+            </div>
+        </div>
+        <!-- Content end -->
+
+{% endblock content %}

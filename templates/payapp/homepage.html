@@ -1,0 +1,1127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    
+    
+    <!-- Banner section start -->
+    <section class="banner v7 v8">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 col-md-12">
+                    <div class="ban-content">
+                        <h1>The Secure, easiest and fastest transfer money.</h1>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Quis ipsum suspe
+                            ultrices gravida. <br>
+                            Risus commodo viverra maecenas .
+                        </p>
+                        <a href="https://vimeo.com/191947042" class="btn btn-outline btn-round icon-left"
+                            data-fancybox="">
+                            <span class="bh"></span> <span><i class="fas fa-play"></i> Learn more</span>
+                        </a>
+                        <a href="#" class="btn btn-default btn-round icon-left"> <span class="bh"></span> <span>Discover
+                                Now</span> </a>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-12">
+                    {% comment %} <div class="form-tab">
+                        <ul class="nav nav-tabs">
+                            <li><a class="active" data-toggle="tab" href="#send-money">Send Moneyssss</a></li>
+                            <li><a data-toggle="tab" href="#receive-money">Receive Money</a></li>
+                        </ul>
+                        <div class="tab-content currency-form">
+                            <div id="send-money" class="tab-pane fade in active show">
+                                <form class="" action="#">
+                                    <div class="form-field">
+                                        <label>send amount</label>
+                                        <div class="join-field">
+                                            <div class="input__add">
+                                                <span>$</span>
+                                                <input type="number" name="send_amount" placeholder="1,000.00">
+                                            </div>
+                                            <div class="curr-select">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <select id="youSendCurrency" data-style="custom-select"
+                                                            data-container="body" data-live-search="true"
+                                                            class="selectpicker" required="">
+                                                            <optgroup label="Popular Currency">
+                                                                <option data-icon="currency-flag currency-flag-usd mr-1"
+                                                                    data-subtext="United States dollar"
+                                                                    selected="selected" value="">
+                                                                    USD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-aud mr-1"
+                                                                    data-subtext="Australian dollar" value="">AUD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-eur mr-1"
+                                                                    data-subtext="Euro" value="">EUR</option>
+                                                            </optgroup>
+                                                            <option value="" data-divider="true">divider</option>
+                                                            <optgroup label="Other Currency">
+                                                                <option data-icon="currency-flag currency-flag-aed mr-1"
+                                                                    data-subtext="United Arab Emirates dirham" value="">
+                                                                    AED
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-ars mr-1"
+                                                                    data-subtext="Argentine peso" value="">ARS</option>
+                                                                <option data-icon="currency-flag currency-flag-aud mr-1"
+                                                                    data-subtext="Australian dollar" value="">AUD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-bdt mr-1"
+                                                                    data-subtext="Bangladeshi taka" value="">BDT
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-bgn mr-1"
+                                                                    data-subtext="Bulgarian lev" value="">BGN</option>
+                                                                <option data-icon="currency-flag currency-flag-brl mr-1"
+                                                                    data-subtext="Brazilian real" value="">BRL</option>
+                                                                <option data-icon="currency-flag currency-flag-cad mr-1"
+                                                                    data-subtext="Canadian dollar" value="">CAD</option>
+                                                                <option data-icon="currency-flag currency-flag-chf mr-1"
+                                                                    data-subtext="Swiss franc" value="">CHF</option>
+                                                                <option data-icon="currency-flag currency-flag-clp mr-1"
+                                                                    data-subtext="Chilean peso" value="">CLP</option>
+                                                                <option data-icon="currency-flag currency-flag-cny mr-1"
+                                                                    data-subtext="Chinese yuan" value="">CNY</option>
+                                                                <option data-icon="currency-flag currency-flag-czk mr-1"
+                                                                    data-subtext="Czech koruna" value="">CZK</option>
+                                                                <option data-icon="currency-flag currency-flag-dkk mr-1"
+                                                                    data-subtext="Danish krone" value="">DKK</option>
+                                                                <option data-icon="currency-flag currency-flag-egp mr-1"
+                                                                    data-subtext="Egyptian pound" value="">EGP</option>
+                                                                <option data-icon="currency-flag currency-flag-eur mr-1"
+                                                                    data-subtext="Euro" value="">EUR</option>
+                                                                <option data-icon="currency-flag currency-flag-gbp mr-1"
+                                                                    data-subtext="British pound" value="">GBP</option>
+                                                                <option data-icon="currency-flag currency-flag-gel mr-1"
+                                                                    data-subtext="Georgian lari" value="">GEL</option>
+                                                                <option data-icon="currency-flag currency-flag-ghs mr-1"
+                                                                    data-subtext="Ghanaian cedi" value="">GHS</option>
+                                                                <option data-icon="currency-flag currency-flag-hkd mr-1"
+                                                                    data-subtext="Hong Kong dollar" value="">HKD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-hrk mr-1"
+                                                                    data-subtext="Croatian kuna" value="">HRK</option>
+                                                                <option data-icon="currency-flag currency-flag-huf mr-1"
+                                                                    data-subtext="Hungarian forint" value="">HUF
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-idr mr-1"
+                                                                    data-subtext="Indonesian rupiah" value="">IDR
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-ils mr-1"
+                                                                    data-subtext="Israeli shekel" value="">ILS</option>
+                                                                <option data-icon="currency-flag currency-flag-inr mr-1"
+                                                                    data-subtext="Indian rupee" value="">INR</option>
+                                                                <option data-icon="currency-flag currency-flag-jpy mr-1"
+                                                                    data-subtext="Japanese yen" value="">JPY</option>
+                                                                <option data-icon="currency-flag currency-flag-kes mr-1"
+                                                                    data-subtext="Kenyan shilling" value="">KES</option>
+                                                                <option data-icon="currency-flag currency-flag-krw mr-1"
+                                                                    data-subtext="South Korean won" value="">KRW
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-lkr mr-1"
+                                                                    data-subtext="Sri Lankan rupee" value="">LKR
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-mad mr-1"
+                                                                    data-subtext="Moroccan dirham" value="">MAD</option>
+                                                                <option data-icon="currency-flag currency-flag-mxn mr-1"
+                                                                    data-subtext="Mexican peso" value="">MXN</option>
+                                                                <option data-icon="currency-flag currency-flag-myr mr-1"
+                                                                    data-subtext="Malaysian ringgit" value="">MYR
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-ngn mr-1"
+                                                                    data-subtext="Nigerian naira" value="">NGN</option>
+                                                                <option data-icon="currency-flag currency-flag-nok mr-1"
+                                                                    data-subtext="Norwegian krone" value="">NOK</option>
+                                                                <option data-icon="currency-flag currency-flag-npr mr-1"
+                                                                    data-subtext="Nepalese rupee" value="">NPR</option>
+                                                                <option data-icon="currency-flag currency-flag-nzd mr-1"
+                                                                    data-subtext="New Zealand dollar" value="">NZD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-pen mr-1"
+                                                                    data-subtext="Peruvian nuevo sol" value="">PEN
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-php mr-1"
+                                                                    data-subtext="Philippine peso" value="">PHP</option>
+                                                                <option data-icon="currency-flag currency-flag-pkr mr-1"
+                                                                    data-subtext="Pakistani rupee" value="">PKR</option>
+                                                                <option data-icon="currency-flag currency-flag-pln mr-1"
+                                                                    data-subtext="Polish złoty" value="">PLN</option>
+                                                                <option data-icon="currency-flag currency-flag-ron mr-1"
+                                                                    data-subtext="Romanian leu" value="">RON</option>
+                                                                <option data-icon="currency-flag currency-flag-rub mr-1"
+                                                                    data-subtext="Russian rouble" value="">RUB</option>
+                                                                <option data-icon="currency-flag currency-flag-sek mr-1"
+                                                                    data-subtext="Swedish krona" value="">SEK</option>
+                                                                <option data-icon="currency-flag currency-flag-sgd mr-1"
+                                                                    data-subtext="Singapore dollar" value="">SGD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-thb mr-1"
+                                                                    data-subtext="Thai baht" value="">THB</option>
+                                                                <option data-icon="currency-flag currency-flag-try mr-1"
+                                                                    data-subtext="Turkish lira" value="">TRY</option>
+                                                                <option data-icon="currency-flag currency-flag-uah mr-1"
+                                                                    data-subtext="Ukrainian hryvnia" value="">UAH
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-ugx mr-1"
+                                                                    data-subtext="Ugandan shilling" value="">UGX
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-vnd mr-1"
+                                                                    data-subtext="Vietnamese dong" value="">VND</option>
+                                                                <option data-icon="currency-flag currency-flag-zar mr-1"
+                                                                    data-subtext="South African rand" value="">ZAR
+                                                                </option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="curr-select">
+                                                    <span class="selected"><img src="{% static 'images/flags/usa.png' %}" alt="" />usd &nbsp;<i class="fas fa-caret-down"></i></span>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#"><img src="{% static 'images/flags/australia.png' %}" alt="" />aud</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><img src="{% static 'images/flags/canada.png' %}" alt="" />cad</a>
+                                                        </li>
+                                                    </ul>
+                                                </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="currency-text v2">
+                                        <span><strong>75.5</strong> Exchange Rate</span>
+                                        <span><strong>$4.50</strong> Transition Fees</span>
+                                    </div>
+                                    <div class="form-field">
+                                        <label>Receive amount</label>
+                                        <div class="join-field">
+                                            <div class="input__add">
+                                                <span>$</span>
+                                                <input type="number" name="send_amount" placeholder="1,000.00">
+                                            </div>
+                                            <div class="curr-select">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <select id="youSendCurrency" data-style="custom-select"
+                                                            data-container="body" data-live-search="true"
+                                                            class="selectpicker" required="">
+                                                            <optgroup label="Popular Currency">
+                                                                <option data-icon="currency-flag currency-flag-usd mr-1"
+                                                                    data-subtext="United States dollar"
+                                                                    selected="selected" value="">
+                                                                    USD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-aud mr-1"
+                                                                    data-subtext="Australian dollar" value="">AUD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-eur mr-1"
+                                                                    data-subtext="Euro" value="">EUR</option>
+                                                            </optgroup>
+                                                            <option value="" data-divider="true">divider</option>
+                                                            <optgroup label="Other Currency">
+                                                                <option data-icon="currency-flag currency-flag-aed mr-1"
+                                                                    data-subtext="United Arab Emirates dirham" value="">
+                                                                    AED
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-ars mr-1"
+                                                                    data-subtext="Argentine peso" value="">ARS</option>
+                                                                <option data-icon="currency-flag currency-flag-aud mr-1"
+                                                                    data-subtext="Australian dollar" value="">AUD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-bdt mr-1"
+                                                                    data-subtext="Bangladeshi taka" value="">BDT
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-bgn mr-1"
+                                                                    data-subtext="Bulgarian lev" value="">BGN</option>
+                                                                <option data-icon="currency-flag currency-flag-brl mr-1"
+                                                                    data-subtext="Brazilian real" value="">BRL</option>
+                                                                <option data-icon="currency-flag currency-flag-cad mr-1"
+                                                                    data-subtext="Canadian dollar" value="">CAD</option>
+                                                                <option data-icon="currency-flag currency-flag-chf mr-1"
+                                                                    data-subtext="Swiss franc" value="">CHF</option>
+                                                                <option data-icon="currency-flag currency-flag-clp mr-1"
+                                                                    data-subtext="Chilean peso" value="">CLP</option>
+                                                                <option data-icon="currency-flag currency-flag-cny mr-1"
+                                                                    data-subtext="Chinese yuan" value="">CNY</option>
+                                                                <option data-icon="currency-flag currency-flag-czk mr-1"
+                                                                    data-subtext="Czech koruna" value="">CZK</option>
+                                                                <option data-icon="currency-flag currency-flag-dkk mr-1"
+                                                                    data-subtext="Danish krone" value="">DKK</option>
+                                                                <option data-icon="currency-flag currency-flag-egp mr-1"
+                                                                    data-subtext="Egyptian pound" value="">EGP</option>
+                                                                <option data-icon="currency-flag currency-flag-eur mr-1"
+                                                                    data-subtext="Euro" value="">EUR</option>
+                                                                <option data-icon="currency-flag currency-flag-gbp mr-1"
+                                                                    data-subtext="British pound" value="">GBP</option>
+                                                                <option data-icon="currency-flag currency-flag-gel mr-1"
+                                                                    data-subtext="Georgian lari" value="">GEL</option>
+                                                                <option data-icon="currency-flag currency-flag-ghs mr-1"
+                                                                    data-subtext="Ghanaian cedi" value="">GHS</option>
+                                                                <option data-icon="currency-flag currency-flag-hkd mr-1"
+                                                                    data-subtext="Hong Kong dollar" value="">HKD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-hrk mr-1"
+                                                                    data-subtext="Croatian kuna" value="">HRK</option>
+                                                                <option data-icon="currency-flag currency-flag-huf mr-1"
+                                                                    data-subtext="Hungarian forint" value="">HUF
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-idr mr-1"
+                                                                    data-subtext="Indonesian rupiah" value="">IDR
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-ils mr-1"
+                                                                    data-subtext="Israeli shekel" value="">ILS</option>
+                                                                <option data-icon="currency-flag currency-flag-inr mr-1"
+                                                                    data-subtext="Indian rupee" value="">INR</option>
+                                                                <option data-icon="currency-flag currency-flag-jpy mr-1"
+                                                                    data-subtext="Japanese yen" value="">JPY</option>
+                                                                <option data-icon="currency-flag currency-flag-kes mr-1"
+                                                                    data-subtext="Kenyan shilling" value="">KES</option>
+                                                                <option data-icon="currency-flag currency-flag-krw mr-1"
+                                                                    data-subtext="South Korean won" value="">KRW
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-lkr mr-1"
+                                                                    data-subtext="Sri Lankan rupee" value="">LKR
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-mad mr-1"
+                                                                    data-subtext="Moroccan dirham" value="">MAD</option>
+                                                                <option data-icon="currency-flag currency-flag-mxn mr-1"
+                                                                    data-subtext="Mexican peso" value="">MXN</option>
+                                                                <option data-icon="currency-flag currency-flag-myr mr-1"
+                                                                    data-subtext="Malaysian ringgit" value="">MYR
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-ngn mr-1"
+                                                                    data-subtext="Nigerian naira" value="">NGN</option>
+                                                                <option data-icon="currency-flag currency-flag-nok mr-1"
+                                                                    data-subtext="Norwegian krone" value="">NOK</option>
+                                                                <option data-icon="currency-flag currency-flag-npr mr-1"
+                                                                    data-subtext="Nepalese rupee" value="">NPR</option>
+                                                                <option data-icon="currency-flag currency-flag-nzd mr-1"
+                                                                    data-subtext="New Zealand dollar" value="">NZD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-pen mr-1"
+                                                                    data-subtext="Peruvian nuevo sol" value="">PEN
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-php mr-1"
+                                                                    data-subtext="Philippine peso" value="">PHP</option>
+                                                                <option data-icon="currency-flag currency-flag-pkr mr-1"
+                                                                    data-subtext="Pakistani rupee" value="">PKR</option>
+                                                                <option data-icon="currency-flag currency-flag-pln mr-1"
+                                                                    data-subtext="Polish złoty" value="">PLN</option>
+                                                                <option data-icon="currency-flag currency-flag-ron mr-1"
+                                                                    data-subtext="Romanian leu" value="">RON</option>
+                                                                <option data-icon="currency-flag currency-flag-rub mr-1"
+                                                                    data-subtext="Russian rouble" value="">RUB</option>
+                                                                <option data-icon="currency-flag currency-flag-sek mr-1"
+                                                                    data-subtext="Swedish krona" value="">SEK</option>
+                                                                <option data-icon="currency-flag currency-flag-sgd mr-1"
+                                                                    data-subtext="Singapore dollar" value="">SGD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-thb mr-1"
+                                                                    data-subtext="Thai baht" value="">THB</option>
+                                                                <option data-icon="currency-flag currency-flag-try mr-1"
+                                                                    data-subtext="Turkish lira" value="">TRY</option>
+                                                                <option data-icon="currency-flag currency-flag-uah mr-1"
+                                                                    data-subtext="Ukrainian hryvnia" value="">UAH
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-ugx mr-1"
+                                                                    data-subtext="Ugandan shilling" value="">UGX
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-vnd mr-1"
+                                                                    data-subtext="Vietnamese dong" value="">VND</option>
+                                                                <option data-icon="currency-flag currency-flag-zar mr-1"
+                                                                    data-subtext="South African rand" value="">ZAR
+                                                                </option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="join-field">
+                                                <input type="text" name="send_amount" placeholder="$1,000.00" />
+                                                <div class="curr-select">
+                                                    <span class="selected"><img src="{% static 'images/flags/australia.png' %}" alt="" />aud &nbsp;<i class="fas fa-caret-down"></i></span>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#"><img src="{% static 'images/flags/australia.png' %}" alt="" />aud</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><img src="{% static 'images/flags/usa.png' %}" alt="" />usa</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div> -->
+                                    </div>
+                                    <button class="btn btn-block btn-filled form-btn bg-gradient">
+                                        <span class="bh"></span> <span>Continue Transition <i
+                                                class="fas fa-arrow-right"></i></span>
+                                    </button>
+                                    <span class="accept-terms">By clicking continue, i am agree with <a href="#">Terms
+                                            &amp; Policy</a></span>
+                                </form>
+                            </div>
+
+                            <div id="receive-money" class="tab-pane fade">
+                                <form class="" action="#">
+                                    <div class="form-field">
+                                        <label>send amount</label>
+                                        <div class="join-field">
+                                            <div class="input__add">
+                                                <span>$</span>
+                                                <input type="number" name="send_amount" placeholder="1,000.00">
+                                            </div>
+                                            <div class="curr-select">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <select id="youSendCurrency" data-style="custom-select"
+                                                            data-container="body" data-live-search="true"
+                                                            class="selectpicker" required="">
+                                                            <optgroup label="Popular Currency">
+                                                                <option data-icon="currency-flag currency-flag-usd mr-1"
+                                                                    data-subtext="United States dollar"
+                                                                    selected="selected" value="">
+                                                                    USD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-aud mr-1"
+                                                                    data-subtext="Australian dollar" value="">AUD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-eur mr-1"
+                                                                    data-subtext="Euro" value="">EUR</option>
+                                                            </optgroup>
+                                                            <option value="" data-divider="true">divider</option>
+                                                            <optgroup label="Other Currency">
+                                                                <option data-icon="currency-flag currency-flag-aed mr-1"
+                                                                    data-subtext="United Arab Emirates dirham" value="">
+                                                                    AED
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-ars mr-1"
+                                                                    data-subtext="Argentine peso" value="">ARS</option>
+                                                                <option data-icon="currency-flag currency-flag-aud mr-1"
+                                                                    data-subtext="Australian dollar" value="">AUD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-bdt mr-1"
+                                                                    data-subtext="Bangladeshi taka" value="">BDT
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-bgn mr-1"
+                                                                    data-subtext="Bulgarian lev" value="">BGN</option>
+                                                                <option data-icon="currency-flag currency-flag-brl mr-1"
+                                                                    data-subtext="Brazilian real" value="">BRL</option>
+                                                                <option data-icon="currency-flag currency-flag-cad mr-1"
+                                                                    data-subtext="Canadian dollar" value="">CAD</option>
+                                                                <option data-icon="currency-flag currency-flag-chf mr-1"
+                                                                    data-subtext="Swiss franc" value="">CHF</option>
+                                                                <option data-icon="currency-flag currency-flag-clp mr-1"
+                                                                    data-subtext="Chilean peso" value="">CLP</option>
+                                                                <option data-icon="currency-flag currency-flag-cny mr-1"
+                                                                    data-subtext="Chinese yuan" value="">CNY</option>
+                                                                <option data-icon="currency-flag currency-flag-czk mr-1"
+                                                                    data-subtext="Czech koruna" value="">CZK</option>
+                                                                <option data-icon="currency-flag currency-flag-dkk mr-1"
+                                                                    data-subtext="Danish krone" value="">DKK</option>
+                                                                <option data-icon="currency-flag currency-flag-egp mr-1"
+                                                                    data-subtext="Egyptian pound" value="">EGP</option>
+                                                                <option data-icon="currency-flag currency-flag-eur mr-1"
+                                                                    data-subtext="Euro" value="">EUR</option>
+                                                                <option data-icon="currency-flag currency-flag-gbp mr-1"
+                                                                    data-subtext="British pound" value="">GBP</option>
+                                                                <option data-icon="currency-flag currency-flag-gel mr-1"
+                                                                    data-subtext="Georgian lari" value="">GEL</option>
+                                                                <option data-icon="currency-flag currency-flag-ghs mr-1"
+                                                                    data-subtext="Ghanaian cedi" value="">GHS</option>
+                                                                <option data-icon="currency-flag currency-flag-hkd mr-1"
+                                                                    data-subtext="Hong Kong dollar" value="">HKD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-hrk mr-1"
+                                                                    data-subtext="Croatian kuna" value="">HRK</option>
+                                                                <option data-icon="currency-flag currency-flag-huf mr-1"
+                                                                    data-subtext="Hungarian forint" value="">HUF
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-idr mr-1"
+                                                                    data-subtext="Indonesian rupiah" value="">IDR
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-ils mr-1"
+                                                                    data-subtext="Israeli shekel" value="">ILS</option>
+                                                                <option data-icon="currency-flag currency-flag-inr mr-1"
+                                                                    data-subtext="Indian rupee" value="">INR</option>
+                                                                <option data-icon="currency-flag currency-flag-jpy mr-1"
+                                                                    data-subtext="Japanese yen" value="">JPY</option>
+                                                                <option data-icon="currency-flag currency-flag-kes mr-1"
+                                                                    data-subtext="Kenyan shilling" value="">KES</option>
+                                                                <option data-icon="currency-flag currency-flag-krw mr-1"
+                                                                    data-subtext="South Korean won" value="">KRW
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-lkr mr-1"
+                                                                    data-subtext="Sri Lankan rupee" value="">LKR
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-mad mr-1"
+                                                                    data-subtext="Moroccan dirham" value="">MAD</option>
+                                                                <option data-icon="currency-flag currency-flag-mxn mr-1"
+                                                                    data-subtext="Mexican peso" value="">MXN</option>
+                                                                <option data-icon="currency-flag currency-flag-myr mr-1"
+                                                                    data-subtext="Malaysian ringgit" value="">MYR
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-ngn mr-1"
+                                                                    data-subtext="Nigerian naira" value="">NGN</option>
+                                                                <option data-icon="currency-flag currency-flag-nok mr-1"
+                                                                    data-subtext="Norwegian krone" value="">NOK</option>
+                                                                <option data-icon="currency-flag currency-flag-npr mr-1"
+                                                                    data-subtext="Nepalese rupee" value="">NPR</option>
+                                                                <option data-icon="currency-flag currency-flag-nzd mr-1"
+                                                                    data-subtext="New Zealand dollar" value="">NZD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-pen mr-1"
+                                                                    data-subtext="Peruvian nuevo sol" value="">PEN
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-php mr-1"
+                                                                    data-subtext="Philippine peso" value="">PHP</option>
+                                                                <option data-icon="currency-flag currency-flag-pkr mr-1"
+                                                                    data-subtext="Pakistani rupee" value="">PKR</option>
+                                                                <option data-icon="currency-flag currency-flag-pln mr-1"
+                                                                    data-subtext="Polish złoty" value="">PLN</option>
+                                                                <option data-icon="currency-flag currency-flag-ron mr-1"
+                                                                    data-subtext="Romanian leu" value="">RON</option>
+                                                                <option data-icon="currency-flag currency-flag-rub mr-1"
+                                                                    data-subtext="Russian rouble" value="">RUB</option>
+                                                                <option data-icon="currency-flag currency-flag-sek mr-1"
+                                                                    data-subtext="Swedish krona" value="">SEK</option>
+                                                                <option data-icon="currency-flag currency-flag-sgd mr-1"
+                                                                    data-subtext="Singapore dollar" value="">SGD
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-thb mr-1"
+                                                                    data-subtext="Thai baht" value="">THB</option>
+                                                                <option data-icon="currency-flag currency-flag-try mr-1"
+                                                                    data-subtext="Turkish lira" value="">TRY</option>
+                                                                <option data-icon="currency-flag currency-flag-uah mr-1"
+                                                                    data-subtext="Ukrainian hryvnia" value="">UAH
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-ugx mr-1"
+                                                                    data-subtext="Ugandan shilling" value="">UGX
+                                                                </option>
+                                                                <option data-icon="currency-flag currency-flag-vnd mr-1"
+                                                                    data-subtext="Vietnamese dong" value="">VND</option>
+                                                                <option data-icon="currency-flag currency-flag-zar mr-1"
+                                                                    data-subtext="South African rand" value="">ZAR
+                                                                </option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="join-field">
+                                                <input type="text" name="send_amount" placeholder="$1,000.00" />
+                                                <div class="curr-select">
+                                                    <span class="selected"><img src="{% static 'images/flags/usa.png' %}" alt="" />usd &nbsp;<i class="fas fa-caret-down"></i></span>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#"><img src="{% static 'images/flags/australia.png' %}" alt="" />aud</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><img src="{% static 'images/flags/canada.png' %}" alt="" />cad</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div> -->
+                                    </div>
+                                    <div class="form-field">
+                                        <label for="rcv_country">Receiver Country</label>
+                                        <select id="rcv_country" name="rcv_country">
+                                            <option>Select Country</option>
+                                            <option value="usa">USA</option>
+                                            <option value="canada">Canada</option>
+                                            <option value="australia">Australia</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-field">
+                                        <label for="del_type">Delivery Type</label>
+                                        <select id="del_type" name="del_type">
+                                            <option>Choose Delivery Type</option>
+                                            <option value="imt">Immediate Transfer</option>
+                                            <option value="rtt">Real Time Transfer</option>
+                                            <option value="eft">Electronic Transfer</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-block btn-filled form-btn bg-gradient">
+                                        <span class="bh"></span> <span>Continue Transition <i
+                                                class="fas fa-arrow-right"></i></span>
+                                    </button>
+                                    <span class="accept-terms">By clicking continue, i am agree with <a href="#">Terms
+                                            &amp; Policy</a></span>
+                                </form>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner section end -->
+
+    <!-- Easy steps section start -->
+    <section class="easy-steps" style="background-image: url(images/shape/shape-1.png); background-repeat: no-repeat">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 m-auto">
+                    <div class="sec-heading">
+                        <h2 class="sec-title">Easy and Fast Way to Send Money</h2>
+                        <p class="sec-subtitle">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Quis ipsum suspendisse
+                            ultrices gravida.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 col-md-12 m-auto">
+                    <ul class="steps v2">
+                        <li><span>1</span> Select Country</li>
+                        <li><span>2</span> Choose Service</li>
+                        <li><span>3</span> Input Information</li>
+                        <li><span>4</span> Confirm and Send</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Easy steps section end -->
+
+    <!-- Payment service section start -->
+    <section class="payment-service bg-light-grey">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="content-box">
+                        <h2>Why Send Money with Our Payment Service</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Quis ipsum suspendisse
+                            ultrices gravida. Risus commodo viverra maecenas
+                        </p>
+                        <ul class="list">
+                            <li><i class="fas fa-check-circle"></i> Lorem ipsum dolor sit amet, consectetur adipiscing.
+                            </li>
+                            <li><i class="fas fa-check-circle"></i> Rabore ettoram dolore magna aliquis ipsum.</li>
+                            <li><i class="fas fa-check-circle"></i> Pouis ipsum suspendisse ultrices gravida.</li>
+                            <li><i class="fas fa-check-circle"></i> Rabore ettoram dolore magna aliquis ipsum.</li>
+                        </ul>
+                        <a href="#" class="btn btn-default bg-gradient"><span class="bh"></span> <span>try it
+                                now</span></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <figure class="imgBox">
+                        <img src="{% static 'images/payment-service2.png' %}" alt="">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Payment service section end -->
+
+    <!-- Services section start -->
+    <section class="services"
+        style="background-image: url(images/shape/shape-2.png); background-repeat: no-repeat; background-size: contain">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 m-auto">
+                    <div class="sec-heading">
+                        <h2 class="sec-title">Secure Payment With Low Transfer Fees</h2>
+                        <p class="sec-subtitle">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Quis ipsum suspendisse
+                            ultrices gravida.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="iconBox boxed text-center">
+                        <!-- <img src="{% static 'images/icons/1.png' %}" alt="" class="img-icon"> -->
+
+                        <!-- Vast-pay icon -->
+                        <span class="Vast-pay-icon Vast-pay-secured"><span class="path1"></span><span
+                                class="path2"></span><span class="path3"></span><span class="path4"></span><span
+                                class="path5"></span><span class="path6"></span><span class="path7"></span><span
+                                class="path8"></span><span class="path9"></span><span class="path10"></span><span
+                                class="path11"></span><span class="path12"></span><span class="path13"></span></span>
+
+                        <h5><a href="#">Secure Payment Service</a></h5>
+                        <p>Lorem ipsum qitame coctetr of asipm scing elise eiusm temor incidid ue. Ruispm suspen disse
+                            intert ultrices gravida.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="iconBox boxed text-center">
+                        <!-- <img src="{% static 'images/icons/2.png' %}" alt="" class="img-icon"> -->
+
+                        <!-- Vast-pay icon -->
+                        <span class="Vast-pay-icon Vast-pay-amount"><span class="path1"></span><span
+                                class="path2"></span><span class="path3"></span><span class="path4"></span><span
+                                class="path5"></span><span class="path6"></span><span class="path7"></span><span
+                                class="path8"></span><span class="path9"></span><span class="path10"></span><span
+                                class="path11"></span></span>
+
+                        <h5><a href="#">Low Cost and Fast transfer</a></h5>
+                        <p>Lorem ipsum qitame coctetr of asipm scing elise eiusm temor incidid ue. Ruispm suspen disse
+                            intert ultrices gravida.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="iconBox boxed text-center">
+                        <!-- <img src="{% static 'images/icons/3.png' %}" alt="" class="img-icon"> -->
+
+                        <!-- Vast-pay icon -->
+                        <span class="Vast-pay-icon Vast-pay-wallet"><span class="path1"></span><span
+                                class="path2"></span><span class="path3"></span><span class="path4"></span><span
+                                class="path5"></span><span class="path6"></span><span class="path7"></span><span
+                                class="path8"></span><span class="path9"></span><span class="path10"></span><span
+                                class="path11"></span><span class="path12"></span><span class="path13"></span><span
+                                class="path14"></span></span>
+
+                        <h5><a href="#">Real Time Money Tracking</a></h5>
+                        <p>Lorem ipsum qitame coctetr of asipm scing elise eiusm temor incidid ue. Ruispm suspen disse
+                            intert ultrices gravida.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services section end -->
+
+    <!-- Payment system works section start -->
+    <section class="ps-works v2 bg-light-grey">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="content-box-fluid right">
+                        <h2>How Does Our Payment System Works?</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Quis ipsum suspendisse
+                            ultrices gravida. Risus commodo viverra maecenas
+                        </p>
+                        <p>
+                            ccumsanamet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Quis ipsum suspendisse ultrices
+                            gravida.
+                        </p>
+                        <a href="#" class="btn btn-default bg-gradient"><span class="bh"></span> <span>Learn
+                                More</span></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <figure class="video-box">
+                        <img src="{% static 'images/video-bg/1.jpg' %}" alt="">
+                        <a href="https://vimeo.com/191947042" class="video-btn" data-fancybox=""><i
+                                class="fas fa-play"></i></a>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Payment system works section end -->
+
+    <!-- Testimonial section start -->
+    <section class="testimonial-v2 v4"
+        style="background-image: url(images/shape/shape-3.png); background-repeat: no-repeat; background-size: contain">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 m-auto">
+                    <div class="sec-heading">
+                        <h2 class="sec-title">What Our Users Say About Us</h2>
+                        <p class="sec-subtitle">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Quis ipsum suspendisse
+                            ultrices gravida.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 col-md-12 m-auto">
+                    <div class="testimonialBox">
+                        <span class="quote-sign solid"><i class="fas fa-quote-right"></i></span>
+                        <div class="test-caro-2 owl-carousel" data-slider-id="1">
+                            <div class="single-testimonial">
+                                <p>
+                                    The template is just awesome for any kind of online money currency tool. And the
+                                    most important thing is the Customer support is very
+                                    helpful. I appreciate this to anyone.
+                                </p>
+                                <div class="tst-head">
+                                    <h6>themes4ever</h6>
+                                    <span>Themeforest Author</span>
+                                </div>
+                            </div>
+                            <div class="single-testimonial">
+                                <p>It has almost all the features that are mandatory for a transactional website. color
+                                    variants are cool. good job!</p>
+                                <div class="tst-head">
+                                    <h6>ThemeJhuri</h6>
+                                    <span>Themeforest Author</span>
+                                </div>
+                            </div>
+                            <div class="single-testimonial">
+                                <p>It has almost all the features that are mandatory for a transactional website. color
+                                    variants are cool. good job!</p>
+                                <div class="tst-head">
+                                    <h6>Revol Themes</h6>
+                                    <span>Themeforest Author</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="client-thumb owl-thumbs" data-slider-id="1">
+                            <a href="javascript:void(0)" class="owl-thumb-item"><img src="{% static 'images/avatar-01.png' %}"
+                                    alt=""></a>
+                            <a href="javascript:void(0)" class="owl-thumb-item"><img src="{% static 'images/avatar-02.png' %}"
+                                    alt=""></a>
+                            <a href="javascript:void(0)" class="owl-thumb-item"><img src="{% static 'images/avatar-03.png' %}"
+                                    alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonial section end -->
+
+    <!-- App section start -->
+    <section class="app bg-light-grey">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="content-box">
+                        <h2>Download Our Mobile Apps</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Quis ipsum suspendisse
+                            ultrices gravida. Risus commodo viverra maecenas
+                        </p>
+                        <ul class="list">
+                            <li><i class="fas fa-check-circle"></i> Lorem ipsum dolor sit amet, consectetur adipiscing.
+                            </li>
+                            <li><i class="fas fa-check-circle"></i> Rabore ettoram dolore magna aliquis ipsum.</li>
+                            <li><i class="fas fa-check-circle"></i> Pouis ipsum suspendisse ultrices gravida.</li>
+                        </ul>
+                        <a href="#" class="btn btn-default bg-gradient icon-left"><span class="bh"></span> <span><i
+                                    class="fab fa-android"></i> Google play</span></a>
+                        <a href="#" class="btn btn-default bg-gradient icon-left">
+                            <span class="bh"></span> <span><i class="fab fa-apple"></i>App store</span></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <figure class="imgBox">
+                        <!-- <img src="{% static 'images/app-img.png' %}" alt=""> -->
+                        <img src="{% static 'images/ani5/1.png' %}" alt="img" class="ani5 ani5img1">
+                        <img src="{% static 'images/ani5/2.png' %}" alt="img" class="ani5 ani5img2">
+                        <img src="{% static 'images/ani5/3.png' %}" alt="img" class="ani5 ani5img3">
+                        <img src="{% static 'images/ani5/4.png' %}" alt="img" class="ani5 ani5img4">
+                        <img src="{% static 'images/ani5/7.png' %}" alt="img" class="ani5 ani5img5">
+                        <img src="{% static 'images/ani5/8.png' %}" alt="img" class="ani5 ani5img6">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- App section end -->
+
+    <!-- Faq section start -->
+    <section class="faq-tab"
+        style="background-image: url(images/shape/shape-4.png); background-repeat: no-repeat; background-size: contain">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 m-auto text-center">
+                    <div class="sec-heading">
+                        <h2 class="sec-title">Frequently Asked Questions</h2>
+                        <p class="sec-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-10 col-md-12 m-auto">
+                    <ul class="row nav nav-tabs v2">
+                        <li class="col-md-3">
+                            <a class="active" data-toggle="tab" href="#general-qs">
+                                <!-- <img src="{% static 'images/icons/9.png' %}" alt=""> -->
+
+                                <!-- Vast-pay icon -->
+                                <span class="Vast-pay-icon v2 Vast-pay-ask"><span class="path1"></span><span
+                                        class="path2"></span><span class="path3"></span><span class="path4"></span><span
+                                        class="path5"></span></span>
+
+                                General Questions
+                            </a>
+                        </li>
+                        <li class="col-md-3">
+                            <a data-toggle="tab" href="#trasn-money">
+                                <!-- <img src="{% static 'images/icons/10.png' %}" alt=""> -->
+
+                                <!-- Vast-pay icon -->
+                                <span class="Vast-pay-icon v2 Vast-pay-hand-cash"><span class="path1"></span><span
+                                        class="path2"></span><span class="path3"></span><span class="path4"></span><span
+                                        class="path5"></span><span class="path6"></span><span class="path7"></span><span
+                                        class="path8"></span><span class="path9"></span><span
+                                        class="path10"></span></span>
+
+                                Money Transfer
+                            </a>
+                        </li>
+                        <li class="col-md-3">
+                            <a data-toggle="tab" href="#mbl-banking">
+                                <!-- <img src="{% static 'images/icons/11.png' %}" alt=""> -->
+
+                                <!-- Vast-pay icon -->
+                                <span class="Vast-pay-icon v2 Vast-pay-fast-transfer"><span class="path1"></span><span
+                                        class="path2"></span><span class="path3"></span><span class="path4"></span><span
+                                        class="path5"></span><span class="path6"></span><span class="path7"></span><span
+                                        class="path8"></span><span class="path9"></span><span
+                                        class="path10"></span><span class="path11"></span><span
+                                        class="path12"></span><span class="path13"></span><span
+                                        class="path14"></span><span class="path15"></span><span
+                                        class="path16"></span><span class="path17"></span><span
+                                        class="path18"></span></span>
+
+                                Mobile Banking
+                            </a>
+                        </li>
+                        <li class="col-md-3">
+                            <a data-toggle="tab" href="#fee-charges">
+                                <!-- <img src="{% static 'images/icons/12.png' %}" alt=""> -->
+
+                                <!-- Vast-pay icon -->
+                                <span class="Vast-pay-icon v2 Vast-pay-bank-diposite"><span class="path1"></span><span
+                                        class="path2"></span><span class="path3"></span><span class="path4"></span><span
+                                        class="path5"></span><span class="path6"></span><span class="path7"></span><span
+                                        class="path8"></span><span class="path9"></span><span
+                                        class="path10"></span><span class="path11"></span><span
+                                        class="path12"></span><span class="path13"></span><span
+                                        class="path14"></span><span class="path15"></span><span
+                                        class="path16"></span></span>
+
+                                Fees and Charges
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="general-qs" class="tab-pane fade in active show">
+                            <div class="accordion" id="accordion">
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#faq-1"
+                                        aria-expanded="true">Lorem ipsum dolor sit amet</h5>
+                                    <div id="faq-1" class="collapse" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscied do eiusmod tempor
+                                                incididunt ut labore et dolore magna aliqua. Quis ipsum
+                                                suspen disse ultrices gravida.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#faq-2"
+                                        aria-expanded="false">Input Wallet Informations</h5>
+
+                                    <div id="faq-2" class="collapse show" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Molestie eu blandit eu sodales, nulla vitae nulla tempor et porta, ante
+                                                nec commodo. Nulla non fringilla urna dolor vivamus,
+                                                vulputate eu neque vivamus lacus in, imperdiet id sed malesuada per.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#faq-3"
+                                        aria-expanded="false">Confirm information and payover</h5>
+
+                                    <div id="faq-3" class="collapse" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Blandit eu sodales, nulla vitae nulla tempor et porta, ante nec commodo.
+                                                Nulla non fringilla urna dolor vivamus, vulputate eu
+                                                neque vivamus lacus in, imperdiet id sed malesuada per.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#faq-4"
+                                        aria-expanded="false">Access Your Mobile Wallet</h5>
+
+                                    <div id="faq-4" class="collapse" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Molestie eu blandit eu sodales, nulla vitae nulla tempor et porta, ante
+                                                nec commodo. Nulla non fringilla urna dolor vivamus,
+                                                vulputate eu neque vivamus lacus in, imperdiet id sed malesuada per.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#faq-5"
+                                        aria-expanded="false">Input Wallet Informations</h5>
+
+                                    <div id="faq-5" class="collapse" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Blandit eu sodales, nulla vitae nulla tempor et porta, ante nec commodo.
+                                                Nulla non fringilla urna dolor vivamus, vulputate eu
+                                                neque vivamus lacus in, imperdiet id sed malesuada per.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="trasn-money" class="tab-pane fade">
+                            <div class="accordion" id="accordion1">
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#tm-1"
+                                        aria-expanded="true">Access Your Mobile Wallet</h5>
+                                    <div id="tm-1" class="collapse" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscied do eiusmod tempor
+                                                incididunt ut labore et dolore magna aliqua. Quis ipsum
+                                                suspen disse ultrices gravida.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#tm-2"
+                                        aria-expanded="false">Input Wallet Informations</h5>
+
+                                    <div id="tm-2" class="collapse show" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Molestie eu blandit eu sodales, nulla vitae nulla tempor et porta, ante
+                                                nec commodo. Nulla non fringilla urna dolor vivamus,
+                                                vulputate eu neque vivamus lacus in, imperdiet id sed malesuada per.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#tm-3"
+                                        aria-expanded="false">Confirm information and payover</h5>
+
+                                    <div id="tm-3" class="collapse" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Blandit eu sodales, nulla vitae nulla tempor et porta, ante nec commodo.
+                                                Nulla non fringilla urna dolor vivamus, vulputate eu
+                                                neque vivamus lacus in, imperdiet id sed malesuada per.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="mbl-banking" class="tab-pane fade">
+                            <div class="accordion" id="accordion2">
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#mblb-1"
+                                        aria-expanded="true">Input Wallet Informations</h5>
+                                    <div id="mblb-1" class="collapse" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscied do eiusmod tempor
+                                                incididunt ut labore et dolore magna aliqua. Quis ipsum
+                                                suspen disse ultrices gravida.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#mblb-2"
+                                        aria-expanded="false">Access Your Mobile Wallet</h5>
+
+                                    <div id="mblb-2" class="collapse show" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Molestie eu blandit eu sodales, nulla vitae nulla tempor et porta, ante
+                                                nec commodo. Nulla non fringilla urna dolor vivamus,
+                                                vulputate eu neque vivamus lacus in, imperdiet id sed malesuada per.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#mblb-3"
+                                        aria-expanded="false">Confirm information payover</h5>
+
+                                    <div id="mblb-3" class="collapse" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Blandit eu sodales, nulla vitae nulla tempor et porta, ante nec commodo.
+                                                Nulla non fringilla urna dolor vivamus, vulputate eu
+                                                neque vivamus lacus in, imperdiet id sed malesuada per.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="fee-charges" class="tab-pane fade">
+                            <div class="accordion" id="accordion3">
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#fc-1"
+                                        aria-expanded="true">Your Mobile Wallet</h5>
+                                    <div id="fc-1" class="collapse" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscied do eiusmod tempor
+                                                incididunt ut labore et dolore magna aliqua. Quis ipsum
+                                                suspen disse ultrices gravida.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#fc-2"
+                                        aria-expanded="false">Input Wallet Informations</h5>
+
+                                    <div id="fc-2" class="collapse show" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Molestie eu blandit eu sodales, nulla vitae nulla tempor et porta, ante
+                                                nec commodo. Nulla non fringilla urna dolor vivamus,
+                                                vulputate eu neque vivamus lacus in, imperdiet id sed malesuada per.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h5 class="collapsed" data-toggle="collapse" data-target="#fc-3"
+                                        aria-expanded="false">Confirm information and payover</h5>
+
+                                    <div id="fc-3" class="collapse" data-parent="#accordion">
+                                        <div class="acr-body">
+                                            <p>
+                                                Blandit eu sodales, nulla vitae nulla tempor et porta, ante nec commodo.
+                                                Nulla non fringilla urna dolor vivamus, vulputate eu
+                                                neque vivamus lacus in, imperdiet id sed malesuada per.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Faq section end -->
+    {% endblock content %}

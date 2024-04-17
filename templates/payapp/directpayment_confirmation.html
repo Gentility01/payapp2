@@ -1,0 +1,165 @@
+{% extends 'dashboard_nav.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+<!-- Profile bar -->
+<div class="profilebar">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="balance-area">
+                    <select name="ctl00$ddlAccounts" class="custom-select" style="width: 200px">
+                        <option selected="selected" value="00">EUR Balance</option>
+                        <option value="01">GBP Balance</option>
+                        <option value="02">└ Prepaid Card - XXXX-2949</option>
+                        <option value="03">Prepaid Card - XXXX-9981</option>
+                        <option value="04" style="background-color: red; color: #fff">Prepaid Card - XXXX-6209</option>
+                    </select>
+                    <p class="total-blance">
+                        $9976.00
+                        <a href="#" class="reload-btn"><i class="fas fa-sync"></i></a>
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="local-time">
+                    <p><b>Local Time:</b> 12:00PM</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="local-time">
+                    <p><b>Last Visit:</b>1/12/2020 - 12:00PM</p>
+                </div>
+            </div>
+            <div class="col notify-col text-right">
+                <div class="notify-btn">
+                    <a href="profile-notifications.html"><i class="far fa-bell"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Profile bar -->
+
+<!-- Content -->
+<div id="content" class="py-4">
+    <div class="container">
+        <div class="row">
+            {% include '_leftbar.html' %}
+
+            <div class="col-lg-9">
+                <div class="profile-content">
+                    <h3 class="admin-heading">Send Money</h3>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Send</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Confirm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Success</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
+                            aria-labelledby="pills-profile-tab">
+                            <form id="deposit-send-money" method="post" class="form bg-offwhite py-4">
+                                {% csrf_token %}
+                                <div class="text-center">
+                                    {% comment %} <h3>You're send money to <b>{{payment_data.username}}</b></h3>
+                                    {% endcomment %}
+                                    <p>You are sending money to <b>{{ payment_data.recipient_email }}</b></p>
+                                    <h2>{{ payment_data.recipient_currency }}{{ payment_data.amount }}</h2>
+                                    <a href="#" class="pbtn btn-link" data-id="chnage-pay-method">Change Payment
+                                        Method</a>
+                                    <div class="payment accord" id="chnage-pay-method">
+                                        <h3 class="title">Payment Methods</h3>
+                                        <button type="button" class="close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-6">
+                                                <div class="single-payment selected">
+                                                    <img src="images/payment-1.png" alt="" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6">
+                                                <div class="single-payment">
+                                                    <img src="images/payment-2.png" alt="" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6">
+                                                <div class="single-payment">
+                                                    <img src="images/payment-3.png" alt="" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6">
+                                                <div class="single-payment">
+                                                    <img src="images/payment-4.png" alt="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p class="text-left"><b>Transactions fees </b></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="text-right">
+                                            <span class="bg-success free-charge">Free</span>
+                                            <del>7.00 USD</del>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p class="text-left"><b>Send Amount</b></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="float-right">{{ payment_data.amount }}
+                                            {{ payment_data.recipient_currency }}</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">For more information, please read our <a href="#">user
+                                        agreement.</a></p>
+
+                                <ul class="pager mt-4">
+                                    <li>
+                                        <a href="{% url 'directpayment_or_send_money' %}" class="btn btn-default mr-0">
+                                            <span class="bh"></span>
+                                            <i class="fas fa-chevron-left"></i>
+                                            <span>Back</span>
+                                        </a>
+                                    </li>
+                                    <input type="hidden" name="recipient_email" value="{{ payment_data.recipient_email }}">
+                                    <input type="hidden" name="amount" value="{{ payment_data.amount }}">
+                                    <input type="hidden" name="sender_currency" value="{{ payment_data.sender_currency }}">
+                                    <input type="hidden" name="recipient_currency" value="{{ payment_data.recipient_currency }}">
+                                    <li>
+                                        <button class="btn btn-default mr-0">
+                                            <span class="bh"></span>
+                                            <span>Send Money</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Content end -->
+{% endblock content %}

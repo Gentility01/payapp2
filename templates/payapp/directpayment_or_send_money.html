@@ -1,0 +1,130 @@
+{% extends 'dashboard_nav.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+<!-- Profile bar -->
+<div class="profilebar">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="balance-area">
+                    <select name="ctl00$ddlAccounts" class="custom-select" style="width: 200px">
+                        <option selected="selected" value="00">EUR Balance</option>
+                        <option value="01">GBP Balance</option>
+                        <option value="02">└ Prepaid Card - XXXX-2949</option>
+                        <option value="03">Prepaid Card - XXXX-9981</option>
+                        <option value="04" style="background-color: red; color: #fff">Prepaid Card - XXXX-6209</option>
+                    </select>
+                    <p class="total-blance">
+                        $9976.00
+                        <a href="#" class="reload-btn"><i class="fas fa-sync"></i></a>
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="local-time">
+                    <p><b>Local Time:</b> 12:00PM</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="local-time">
+                    <p><b>Last Visit:</b>1/12/2020 - 12:00PM</p>
+                </div>
+            </div>
+            <div class="col notify-col text-right">
+                <div class="notify-btn">
+                    <a href="profile-notifications.html"><i class="far fa-bell"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Profile bar -->
+
+<!-- Content -->
+<div id="content" class="py-4">
+    <div class="container">
+        <div class="row">
+            {% include '_leftbar.html' %}
+
+            <div class="col-lg-9">
+                <div class="profile-content">
+                    <h3 class="admin-heading">Send Money</h3>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Send</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Confirm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Success</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
+                            aria-labelledby="pills-profile-tab">
+                            <form id="send-money" method="post" class="form bg-offwhite py-5">
+                                {% csrf_token %}
+                                <div class="text-center">
+                                    <h3 class="text-5 msg-header">Personal Details</h3>
+                                    <p class="text-4 text-center">Send your money on anytime, anywhere in the world.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="emailID">Recipient Email</label>
+                                        {{ form.recipient_email}}
+                                    
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="col-12 col-sm-12">
+
+                                        <label for="inputCountry">Senders Currency</label>
+                                       {{ form.senders_currency}}
+
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <div class="col-12 col-sm-12">
+
+                                        <label for="inputCountry">Recipient Currency</label>
+                                        {{ form.recipient_currency}}
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="emailID">Amount</label>
+                                    {% comment %} <input type="number" name="amount" class="form-control" id="amount" required placeholder="Enter Amount"> {% endcomment %}
+                                    {{ form.amount}}
+                                </div>
+
+
+                                <ul class="pager mt-4">
+                                    <li>&nbsp;</li>
+                                    <li>
+                                        <button type="submit" class="btn btn-default mr-0">
+                                            <span class="bh"></span>
+                                            <span>Next</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Content end -->
+{% endblock content %}

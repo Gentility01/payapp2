@@ -1,0 +1,66 @@
+ <!-- Left sidebar -->
+ <aside class="col-lg-3 sidebar">
+    <div class="widget admin-widget p-0">
+        <div class="Profile-menu">
+            <ul class="nav secondary-nav">
+                <li class="nav-item {% if request.path == '/account/dashboard' %}active{% endif %} ">
+                    <a class="nav-link" href="{% url 'user_dashboard' %}"><i
+                            class="fas fa-tachometer-alt"></i>Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.html"><i class="fab fa-autoprefixer"></i>Account</a>
+                </li>
+                <li class="nav-item {% if request.path == '/bank-account' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'backaccount' %}"><i class="fas fa-university"></i>Bank
+                        Accounts</a>
+                </li>
+                
+                <li class="nav-item {% if request.path == '/card-list' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'card_list' %}"><i class="far fa-list-alt"></i>Card
+                        List</a>
+                </li>
+                <li class="nav-item {% if request.path == '/deposite-money' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'deposite_money' %}"><i class="fas fa-plus"></i>Deposit
+                        Money</a>
+                </li>
+                <li class="nav-item {% if request.path == '/send_money' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'directpayment_or_send_money' %}"><i class="far fa-paper-plane"></i>Send
+                        Money</a>
+                </li>
+                <li class="nav-item {% if request.path == '/request_money' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'request_money' %}"><i class="fas fa-piggy-bank"></i>Request
+                        Money</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="withdraw-money.html"><i class="fas fa-wallet"></i>Withdarw
+                        Money</a>
+                </li>
+                <li class="nav-item {% if request.path == '/transaction-history' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'all_reansaction_history' %}"><i
+                            class="fas fa-list-ul"></i>Transaction</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="profile-notifications.html"><i
+                            class="fas fa-cog"></i>Setting</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="widget admin-widget">
+        <i class="fas fa-coins admin-overlay-icon"></i>
+        <h2>Earn ${{ online_account.balance}}</h2>
+        
+    </div>
+
+    {% comment %} <div class="widget admin-widget">
+        <i class="fas fa-comments admin-overlay-icon"></i>
+        <h2>Need Help?</h2>
+        <p>
+            Have questions or concerns regrading your account?<br />
+            Our experts are here to help!.
+        </p>
+        <a href="#" class="btn btn-default btn-center"><span>Start Chat</span></a>
+    </div> {% endcomment %}
+</aside>
+<!-- Left Panel End -->

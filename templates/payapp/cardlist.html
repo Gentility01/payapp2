@@ -1,0 +1,107 @@
+{% extends 'dashboard_nav.html' %}
+{% load static %}
+
+{% block content %}
+    
+       
+        <!-- Profile bar -->
+        <div class="profilebar">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="balance-area">
+                            <select name="ctl00$ddlAccounts" class="custom-select" style="width: 200px">
+                                <option selected="selected" value="00">EUR Balance</option>
+                                <option value="01">GBP Balance</option>
+                                <option value="02">└ Prepaid Card - XXXX-2949</option>
+                                <option value="03">Prepaid Card - XXXX-9981</option>
+                                <option value="04" style="background-color: red; color: #fff">Prepaid Card - XXXX-6209
+                                </option>
+                            </select>
+                            <p class="total-blance">
+                                $9976.00
+                                <a href="#" class="reload-btn"><i class="fas fa-sync"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="local-time">
+                            <p><b>Local Time:</b> 12:00PM</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="local-time">
+                            <p><b>Last Visit:</b>1/12/2020 - 12:00PM</p>
+                        </div>
+                    </div>
+                    <div class="col notify-col text-right">
+                        <div class="notify-btn">
+                            <a href="profile-notifications.html"><i class="far fa-bell"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Profile bar -->
+
+        <!-- Content -->
+        <div id="content" class="py-4">
+            <div class="container">
+                <div class="row">
+                  {% include '_leftbar.html' %}
+
+                    <!-- Middle Panel -->
+                    <div class="col-lg-9 profile-area">
+                        <h3 class="admin-heading bg-offwhite">
+                            <a href="#edit-personal-details" class="btn-link pbtn" data-id="edit-personal-details"><i
+                                    class="fas fa-edit mr-1"></i>Update</a>
+                            <p>Payments Contats</p>
+                            <span>Your contact information</span>
+                        </h3>
+
+                        <!-- Edit personal info End -->
+                        <div class="infoItems shadow">
+                            <ul class="nav nav-tabs">
+                                {% comment %} <li><a data-toggle="tab" href="#menu1" class="active">Paying To</a></li> {% endcomment %}
+
+                                
+                            </ul>
+
+                            <div class="tab-content">
+                                <div id="menu1" class="tab-pane fade in active">
+                                    <div class="row">
+                                        {% for card in cards %}
+                                        <div class="col-12 col-sm-6 col-lg-4 cardBox">
+                                            <div class="account-card account-card-primary">
+                                                <p class="pirotry text-right bg-success">Active</p>
+                                                <div class="row">
+                                                    <h3 class="card-number col-12">{{card.card_type.capitalize}} Card</h3>
+                                                    {% comment %} <h3 class="card-number col-12">{{card.card_type}}</h3> {% endcomment %}
+                                                    <p class="card-number col-12">XXXXXXXXXXXX{{card.card_number|slice:"-3"}}</p>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        {% comment %} <a href="#" class="btn-contact">Pay</a> {% endcomment %}
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <i class="fas fa-university"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                       
+                                    </div>
+                                </div>
+                                <!-- END First Tab -->
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Middle Panel End -->
+                </div>
+            </div>
+        </div>
+        <!-- Content end -->
+
+{% endblock content %}

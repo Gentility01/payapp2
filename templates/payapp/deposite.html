@@ -1,0 +1,122 @@
+{% extends 'dashboard_nav.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<!-- Profile bar -->
+<div class="profilebar">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="balance-area">
+                    <select name="ctl00$ddlAccounts" class="custom-select" style="width: 200px">
+                        <option selected="selected" value="00">EUR Balance</option>
+                        <option value="01">GBP Balance</option>
+                        <option value="02">└ Prepaid Card - XXXX-2949</option>
+                        <option value="03">Prepaid Card - XXXX-9981</option>
+                        <option value="04" style="background-color: red; color: #fff">Prepaid Card - XXXX-6209</option>
+                    </select>
+                    <p class="total-blance">
+                        $9976.00
+                        <a href="#" class="reload-btn"><i class="fas fa-sync"></i></a>
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="local-time">
+                    <p><b>Local Time:</b> 12:00PM</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="local-time">
+                    <p><b>Last Visit:</b>1/12/2020 - 12:00PM</p>
+                </div>
+            </div>
+            <div class="col notify-col text-right">
+                <div class="notify-btn">
+                    <a href="profile-notifications.html"><i class="far fa-bell"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Profile bar -->
+
+<!-- Content -->
+<div id="content" class="py-4">
+    <div class="container">
+        <div class="row">
+            {% include '_leftbar.html' %}
+
+            <div class="col-lg-9">
+                <div class="profile-content">
+                    <h3 class="admin-heading">Deposit Money</h3>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Deposit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Confirm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Success</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
+                            aria-labelledby="pills-profile-tab">
+                            <form id="deposit-send-money" method="post" class="form bg-offwhite">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="deposit-money">Amount</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span
+                                                class="input-group-text currency-icon">$</span></div>
+                                        <input type="text" class="form-control" id="deposit-money" value="1000"
+                                            name="amount" placeholder="" />
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                        <div class="col-12 col-sm-12">
+
+                                            <label for="inputCountry">Payment Method</label>
+                                            <select class="custom-select" id="inputCountry" name="payment_method">
+                                                <option value=""> --- Please Select ---</option>
+                                                <option value="Credit or Debit Cards">Credit or Debit Card</option>
+                                                <option value="Bank Account">Bank Account</option>
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p class="text-left"><b>You'll deposit</b></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="float-right">1,000.00 USD</span>
+                                    </div>
+                                </div>
+                                <ul class="pager mt-4">
+                                    <li>&nbsp;</li>
+                                    <li>
+                                        <button type="submit" class="btn btn-default mr-0">
+                                            <span class="bh"></span>
+                                            <span>Next</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

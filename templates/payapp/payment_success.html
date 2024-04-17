@@ -1,0 +1,112 @@
+{% extends 'dashboard_nav.html' %}
+
+{% load static %}
+
+{% block content %}
+    
+
+    
+          
+            <!-- Profile bar -->
+            <div class="profilebar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="balance-area">
+                                <select name="ctl00$ddlAccounts" class="custom-select" style="width: 200px">
+                                    <option selected="selected" value="00">EUR Balance</option>
+                                    <option value="01">GBP Balance</option>
+                                    <option value="02">└ Prepaid Card - XXXX-2949</option>
+                                    <option value="03">Prepaid Card - XXXX-9981</option>
+                                    <option value="04" style="background-color: red; color: #fff">Prepaid Card - XXXX-6209</option>
+                                </select>
+                                <p class="total-blance">
+                                    $9976.00
+                                    <a href="#" class="reload-btn"><i class="fas fa-sync"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="local-time">
+                                <p><b>Local Time:</b> 12:00PM</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="local-time">
+                                <p><b>Last Visit:</b>1/12/2020 - 12:00PM</p>
+                            </div>
+                        </div>
+                        <div class="col notify-col text-right">
+                            <div class="notify-btn">
+                                <a href="profile-notifications.html"><i class="far fa-bell"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Profile bar -->
+
+            <!-- Content -->
+            <div id="content" class="py-4">
+                <div class="container">
+                    <div class="row">
+                        <!-- Left sidebar -->
+                        {% include '_leftbar.html' %}
+                        <!-- Left Panel End -->
+
+                        <div class="col-lg-9">
+                            <div class="profile-content">
+                                <h3 class="admin-heading">Send Money successfully</h3>
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="">Send</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="">Details</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="">Confirm</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="">Success</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                        <div class="bg-offwhite success form">
+                                            <div class="text-center">
+                                                <h1 class=""><i class="far fa-check-circle text-success"></i></h1>
+                                                <h3 class="text-success">Success!</h3>
+                                                <p class="">Transactions Complete</p>
+                                                <p class="">You've successfully <b>$999</b> Send Money to <a href="#">demo@roysha.com</a></p>
+                                                <p>See transaction details under <a href="#">Activity</a></p>
+                                                <p>
+                                                    <span class="name"><b>Transaction ID:</b></span>
+                                                    <span class="decs">8974HSDB32056KSDS</span>
+                                                </p>
+                                                <hr />
+                                                <div class="invoice-option text-center mt-2">
+                                                    <a href="#" class="invoice-btn"><i class="far fa-file-pdf"></i>Save as PDF</a>
+                                                    <a href="#" class="invoice-btn"><i class="fas fa-print"></i>Print Receipt</a>
+                                                    <a href="#" class="invoice-btn"><i class="far fa-envelope"></i>Email Receipt</a>
+                                                </div>
+                                                <hr />
+                                                <a href="deposit-money-success.html" class="btn btn-default mr-0 mt-5">
+                                                    <span class="bh"></span>
+                                                    <span>Send Money Again</span>
+                                                </a>
+                                                <a href="transactions-details.html" class="btn btn-default mr-0 mt-5">
+                                                    <span class="bh"></span>
+                                                    <span>Go to Summery</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Content end -->
+{% endblock content %}

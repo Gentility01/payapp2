@@ -1,0 +1,334 @@
+{% extends 'dashboard_nav.html' %}
+
+{% load static %}
+
+{% block content %}
+            
+
+            <!-- Profile bar -->
+            <div class="profilebar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="balance-area">
+                                <select name="ctl00$ddlAccounts" class="custom-select" style="width: 200px">
+                                    <option selected="selected" value="00">EUR Balance</option>
+                                    <option value="01">GBP Balance</option>
+                                    <option value="02">└ Prepaid Card - XXXX-2949</option>
+                                    <option value="03">Prepaid Card - XXXX-9981</option>
+                                    <option value="04" style="background-color: red; color: #fff">Prepaid Card - XXXX-6209</option>
+                                </select>
+                                <p class="total-blance">
+                                    $9976.00
+                                    <a href="#" class="reload-btn"><i class="fas fa-sync"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="local-time">
+                                <p><b>Local Time:</b> 12:00PM</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="local-time">
+                                <p><b>Last Visit:</b>1/12/2020 - 12:00PM</p>
+                            </div>
+                        </div>
+                        <div class="col notify-col text-right">
+                            <div class="notify-btn">
+                                <a href="profile-notifications.html"><i class="far fa-bell"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Profile bar -->
+
+            <!-- Content  -->
+            <div id="content" class="py-4">
+                <div class="container">
+                    <div class="row">
+                        {% include '_leftbar.html' %}
+
+                        <!-- Container Panel  -->
+                        <div class="col-lg-9">
+                            <h2 class="admin-heading bg-offwhite">All History</h2>
+
+                            <!-- Filter -->
+                            <div class="row">
+                                <!-- Category Filter  -->
+                                <div class="col-12 all-fillters-area main-form">
+                                    <ul class="bill-items nav nav-tabs" id="teleporter">
+                                        <li class="nav-item active" data-filter-value="01">Mobile</li>
+                                        <li class="nav-item" data-filter-value="02">DTH</li>
+                                        <li class="nav-item" data-filter-value="03">Datacard</li>
+                                        <li class="nav-item" data-filter-value="04">Landline</li>
+                                        <li class="nav-item" data-filter-value="05">Broadband</li>
+                                        <li class="nav-item" data-filter-value="06">Electricity</li>
+                                        <li class="nav-item" data-filter-value="07">Gas</li>
+                                        <li class="nav-item" data-filter-value="08">Metro</li>
+                                        <li class="nav-item" data-filter-value="09">Water</li>
+                                        <li class="nav-item" data-filter-value="10">G Play</li>
+                                        <li class="nav-item" data-filter-value="11">Cable</li>
+                                        <li class="nav-item" data-filter-value="12">Muncipality</li>
+                                        <li class="nav-item" data-filter-value="13">EMI</li>
+                                        <li class="nav-item" data-filter-value="14">Challan</li>
+                                        <li class="nav-item" data-filter-value="15">Housing</li>
+                                    </ul>
+                                    <ul class="morebtn">
+                                        <li>
+                                            <a href="#" class="nav-link mbtn"><i class="fas fa-ellipsis-v"></i></a>
+                                            <ul class="dropdown-menu" id="receiver"></ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Category Filter End -->
+                                <div class="col-12">
+                                    <form id="custom-filter-area" method="post">
+                                        <div class="form-row">
+                                            <!-- Date Range -->
+                                            <div class="col-md-12">
+                                                <div class="form-group filter-area">
+                                                    <i class="fas fa-calendar-alt"></i>
+                                                    <input id="custom-date" type="text" class="form-control py-4" placeholder="Date Range" />
+                                                    <div class="export-area" data-toggle="collapse">
+                                                        <div class="dropdown filter-btn">
+                                                            <a class="btn-link ml-2" href="#"><i class="far fa-file-excel"></i></a>
+                                                            <a class="btn-link ml-2" href="#"> <i class="far fa-file-pdf"></i></a>
+                                                            <a class="btn-link ml-2" href="#"><i class="fas fa-print"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- All Filters Link  -->
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Filter End -->
+
+                            <!-- All Transactions  -->
+                            <div class="profile-content">
+                                <!-- Admin Heading Title  -->
+                                <div class="transaction-title bg-offwhite">
+                                    <div class="items">
+                                        <div class="row">
+                                            <div class="col"><span class="">Date</span></div>
+                                            <div class="col">Description</div>
+                                            <div class="col text-center">Status</div>
+                                            <div class="col text-center">Fee</div>
+                                            <div class="col">Amount</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Admin Heading Title End -->
+
+                                <!-- Transaction List -->
+                                <div class="transaction-area">
+                                    {% for transaction in  transaction_history %}
+                                    <div class="items">
+                                        <a href="transactions-details.html">
+                                            <div class="row">
+                                                <div class="col pay-date">
+                                                    {{transaction.created_at|date:"j M"}}
+                                                </div>
+                                                <div class="col">
+                                                    <span class="name">{{transaction.description}}</span>
+                                                </div>
+                                                <div class="col text-center">
+                                                    <span class="payments-status text-success"
+                                                        ><i data-toggle="tooltip" data-original-title="Completed" class="fas fa-check-circle"></i
+                                                    ></span>
+                                                </div>
+                                                <div class="col">
+                                                    <span class="payment-amaount">- $0.2</span>
+                                                </div>
+                                                <div class="col">
+                                                    <span class="payment-amaount">+ {{ transaction.amount}}</span>
+                                                    {% comment %} <span class="currency">(USD)</span> {% endcomment %}
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                    
+                                    <div class="trancstion-more">
+                                        <div class="items">
+                                            <a href="transactions-details.html">
+                                                <div class="row">
+                                                    <div class="col pay-date">
+                                                        <span class="date">15</span>
+                                                        <span class="pay-month">APR</span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="name">Payment Received From Envato</span>
+                                                    </div>
+                                                    <div class="col text-center">
+                                                        <span class="payments-status text-success"
+                                                            ><i data-toggle="tooltip" data-original-title="Completed" class="fas fa-check-circle"></i
+                                                        ></span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="payment-amaount">- $0.2</span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="payment-amaount">+ $562</span>
+                                                        <span class="currency">(USD)</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="items">
+                                            <a href="transactions-details.html">
+                                                <div class="row">
+                                                    <div class="col pay-date">
+                                                        <span class="date">15</span>
+                                                        <span class="pay-month">APR</span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="name">Gas Bill Pay</span>
+                                                    </div>
+                                                    <div class="col text-center">
+                                                        <span class="payments-status text-success"
+                                                            ><i data-toggle="tooltip" data-original-title="Completed" class="fas fa-check-circle"></i
+                                                        ></span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="payment-amaount">- $0.2</span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="payment-amaount">- $562</span>
+                                                        <span class="currency">(USD)</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="items">
+                                            <a href="transactions-details.html">
+                                                <div class="row">
+                                                    <div class="col pay-date">
+                                                        <span class="date">15</span>
+                                                        <span class="pay-month">APR</span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="name">Water Bill Payment</span>
+                                                    </div>
+                                                    <div class="col text-center">
+                                                        <span class="payments-status"
+                                                            ><i class="fas fa-ellipsis-h" data-toggle="tooltip" data-original-title="In Progress"></i
+                                                        ></span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="payment-amaount">- $0.2</span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="payment-amaount">- $562</span>
+                                                        <span class="currency">(USD)</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Transaction List End -->
+
+                                <!-- Transaction Details Modal  -->
+                                <div id="transaction-detail" class="modal fade" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered details-area" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class="modal_header">
+                                                    <span class="status bg-success">Paid</span>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="content-area">
+                                                                <i class="fas fa-building"></i>
+                                                                Desco Govt Water Ltd.
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="content-area text-right">
+                                                                <div class="price">$559</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                </div>
+                                                <div class="modal-content-area">
+                                                    <h5 class="transcation-heading">Transaction Details</h5>
+                                                    <div class="transaction-area">
+                                                        <div class="items">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <span class="name">Gas Bill Paid By:</span>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <span class="decs">Jhon Due</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="items">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <span class="name">Transaction ID:</span>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <span class="decs">8974HSDB32056KSDS</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="items">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <span class="name">Transaction ID:</span>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <span class="decs">8974HSDB32056KSDS</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="items">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <span class="name">Description:</span>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <span class="decs">This bill pay via Credit Card</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Transaction Modal End -->
+
+                                <!-- Pagination -->
+                                <ul class="pagination justify-content-left mt-4 pt-4 pl-0">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item d-flex align-content-center text-muted mr-2">...</li>
+                                    <li class="page-item"><a class="page-link" href="#">19</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
+                                    </li>
+                                </ul>
+                                <!-- Paginations end -->
+                            </div>
+                            <!-- All Transactions End -->
+                        </div>
+                        <!-- Middle End -->
+                    </div>
+                </div>
+            </div>
+            <!-- Content end -->
+{% endblock content %}

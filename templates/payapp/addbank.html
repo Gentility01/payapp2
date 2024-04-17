@@ -1,0 +1,122 @@
+{% extends 'dashboard_nav.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Profile bar -->
+<div class="profilebar">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="balance-area">
+                    <select name="ctl00$ddlAccounts" class="custom-select" style="width:200px;">
+                        <option selected="selected" value="00">EUR Balance</option>
+                        <option value="01">GBP Balance</option>
+                        <option value="02">└ Prepaid Card - XXXX-2949</option>
+                        <option value="03">Prepaid Card - XXXX-9981</option>
+                        <option value="04" style="background-color:red; color: #fff;">Prepaid Card - XXXX-6209
+                        </option>
+                    </select>
+                    <p class="total-blance">
+                        $9976.00
+                        <a href="#" class="reload-btn"><i class="fas fa-sync"></i></a>
+                    </p>
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="local-time">
+                    <p><b>Local Time:</b> 12:00PM</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="local-time">
+                    <p><b>Last Visit:</b>1/12/2020 - 12:00PM</p>
+                </div>
+            </div>
+            <div class="col notify-col text-right">
+                <div class="notify-btn"><a href="profile-notifications.html"><i class="far fa-bell"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Profile bar -->
+
+<!-- Content -->
+<div id="content" class="py-4">
+    <div class="container">
+        <div class="row">
+
+            {% include '_leftbar.html' %}
+
+            <!-- Middle Panel  -->
+            <div class="col-lg-9  profile-area">
+                <h2 class="admin-heading">
+                    <p>Order Card</p>
+                    <span>Use this form to order a Payoneer Prepaid MasterCard® that will reflect your currency
+                        balance. Use this card at ATMs, in stores, or online anywhere MasterCard® is accepted.
+                        For additional information, please refer to our FAQs.</span>
+                </h2>
+                <!-- Credit or Debit Cards  -->
+                <div class="infoItems bg-offwhite">
+                    <div class="row">
+                        <div class="col-12">
+                            <form id="order-form" method="post">
+                                {% csrf_token %}
+                                
+                                {% if form.errors %}
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>Warning!</strong> {{form.errors}}.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                {% endif %}
+                                    
+                                <div class="edit-content">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="{{ form.bank_name.label}}">{{ form.bank_name.label}}</label>
+                                            {{ form.bank_name}}
+                                        </div>
+
+
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label
+                                                    for="{{ form.account_number.label}}">{{ form.account_number.label}}</label>
+
+                                                {{ form.account_number }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="{{ form.pin.label }}">{{ form.pin.label }}</label>
+                                                {{ form.pin }}
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <br>
+                                    <button class="btn btn-default" type="submit">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <!-- Middle Panel End -->
+
+    </div>
+</div>
+</div>
+<!-- Content end -->
+
+{% endblock content %}
