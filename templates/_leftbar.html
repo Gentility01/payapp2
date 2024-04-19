@@ -1,5 +1,12 @@
  <!-- Left sidebar -->
  <aside class="col-lg-3 sidebar">
+
+    <div class="widget admin-widget">
+        <i class="fas fa-coins admin-overlay-icon"></i>
+        <h2>Balance ${{ online_account.balance}}</h2>
+        
+    </div>
+
     <div class="widget admin-widget p-0">
         <div class="Profile-menu">
             <ul class="nav secondary-nav">
@@ -32,7 +39,7 @@
                         Money</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="withdraw-money.html"><i class="fas fa-wallet"></i>Withdarw
+                    <a class="nav-link" href="{% url 'withdrawal_view' %}"><i class="fas fa-wallet"></i>Withdarw
                         Money</a>
                 </li>
                 <li class="nav-item {% if request.path == '/transaction-history' %}active{% endif %}">
@@ -47,11 +54,7 @@
         </div>
     </div>
 
-    <div class="widget admin-widget">
-        <i class="fas fa-coins admin-overlay-icon"></i>
-        <h2>Earn ${{ online_account.balance}}</h2>
-        
-    </div>
+    
 
     {% comment %} <div class="widget admin-widget">
         <i class="fas fa-comments admin-overlay-icon"></i>

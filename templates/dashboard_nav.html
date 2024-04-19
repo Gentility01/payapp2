@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!--TITLE-->
-    <title>Roysha- Money Transfer and Online Payments HTML Template</title>
+    <title>Webapp-2024 Money Transfer and Online Payments HTML Template</title>
 
     <!-- Favicon icon -->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
@@ -54,8 +54,8 @@
             <!--header -->
             <div class="header-main">
                 <div class="container d-flex align-items-center">
-                    <a class="logo d-inline-flex" href="dashboard.html">
-                        <h2>Vast<span style="color:#154ABD">Pay</span></h2>
+                    <a class="logo d-inline-flex" href="{% url 'user_dashboard' %}">
+                        <h2>Webapp<span style="color:#154ABD">2024</span></h2>
                     </a>
                     <nav class="primary-menu ml-auto">
                         <a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
@@ -93,12 +93,14 @@
                                     </li>
                                     {% for payment_request in payment_requests %}
                                     <li class="nav__create-new-profile-link">
-                                        <a href="profile.html">
+                                        <a href="{% url 'payment_request_list' %}">
                                             <span>Payment request from  {{payment_request.sender.first_name.capitalize }} {{payment_request.sender.last_name.capitalize }}</span>
                                         </a>
                                     </li>
                                     <li class="divider"></li>
                                     {% endfor %}
+                                    <hr>
+                                    <li><a href="{% url 'payment_request_list' %}">view all notifications</a></li>
                                     
                                     
                                 </ul>

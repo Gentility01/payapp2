@@ -10,6 +10,9 @@ class CustomBankNameWidget(forms.Select):
     def __init__(self, attrs=None):
         super().__init__(attrs={"class": "custom-select", "id": "input-zon", "name": "zone_id"})
 
+
+
+
 class AddBankForm(forms.ModelForm):
     class Meta:
         model = BankAccount
@@ -70,7 +73,8 @@ class CardForm(forms.ModelForm):
             "card_number": forms.TextInput(
                 attrs={"class": "form-control", "placeholder": "eg. 122 2233 345"}
             ),
-            "cvv": forms.TextInput(attrs={"class": "form-control", "placeholder": "eg. 123"}),
+            "cvv": forms.TextInput(attrs={"class": "form-control", "placeholder": "eg. 123"}
+            ),
         }
        
 
@@ -78,7 +82,8 @@ class CardForm(forms.ModelForm):
     def clean_card_number(self):
         card_number = self.cleaned_data['card_number']
         if len(card_number) != 10 or not card_number.isdigit():
-            raise forms.ValidationError("Card number must be a 10-digit number.")
+            raise forms.ValidationError("Card number must be a 10-digit number."
+        )
         return card_number
     
     def clean_cvv(self):
@@ -92,21 +97,21 @@ class CardForm(forms.ModelForm):
 class DirectPaymentForm(forms.Form):
     amount = forms.DecimalField(
         label="Amount", required=False, widget=forms.NumberInput(
-            attrs={'class': 'form-control', 'step': '0.01', 'placeholder': 'Amount'})
-    )
+            attrs={'class': 'form-control', 'step': '0.01', 'placeholder': 'Amount'}
+    ))
     recipient_email = forms.EmailField(
         label="Recipient Email", required=False, widget=forms.EmailInput(
-            attrs={'class': 'form-control', 'placeholder': 'Recipient Email'})
-    )
+            attrs={'class': 'form-control', 'placeholder': 'Recipient Email'}
+    ))
    
     senders_currency = forms.ChoiceField(
         label="Sender Currency", required=False, choices=CURRENCY_CHOICES.choices, 
-        widget=forms.Select(attrs={"class": "custom-select", "id": "input-zon", "name": "zone_id"})
-    )
+        widget=forms.Select(attrs={"class": "custom-select", "id": "input-zon", "name": "zone_id"}
+    ))
     recipient_currency = forms.ChoiceField(
         label="Sender Currency", required=False, choices=CURRENCY_CHOICES.choices, 
-        widget=forms.Select(attrs={"class": "custom-select", "id": "input-zon", "name": "zone_id"})
-    )
+        widget=forms.Select(attrs={"class": "custom-select", "id": "input-zon", "name": "zone_id"}
+    ))
 
 
 
@@ -129,3 +134,18 @@ class PaymentRequestForm(forms.ModelForm):
         fields = ["recipient_email", "amount", "message", "currency"]
         
 
+
+class WithdrawalForm(forms.Form):
+    bank_account = forms.ModelChoiceField(queryset=BankAccount.objects.none(),
+                    widget=forms.Select(
+                        attrs={"class": "custom-select", "id": "input-zon", "name": "zone_id"}                    
+    ))
+    amount = forms.DecimalField(min_value=0.01, 
+                    widget=forms.NumberInput(
+                        attrs={'class': 'form-control', 'placeholder': 'Enter amount'}
+    ))
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
+        super(WithdrawalForm, self).__init__(*args, **kwargs)
+        self.fields['bank_account'].queryset = BankAccount.objects.filter(user=user)

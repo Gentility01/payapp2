@@ -18,5 +18,10 @@ urlpatterns = [
     path("payment_failed", views.payment_failed, name="payment_failed"),
     path("transaction-history", views.all_reansaction_history, name="all_reansaction_history"),
     path("request_money", views.request_money, name="request_money"),
-    path("payment_request_success", views.payment_request_success, name="payment_request_success")
+    path("payment_request_success", views.payment_request_success, name="payment_request_success"),
+    path("respond_to_payment/<int:pk>/", views.respond_to_payment_request, name="respond_to_payment_request"),
+    path("payment_request_list", views.payment_request_list_view, name="payment_request_list"),
+    path("withdraw_money", views.withdrawal_view, name="withdrawal_view"),
+    path("withdraw_money_confirm", views.withdraw_money_confirm, name="withdraw_money_confirm"),
+    path("withdraw_success", views.withdraw_success, name="withdraw_success")
 ]

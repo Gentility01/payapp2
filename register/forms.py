@@ -1,15 +1,16 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser, OnlineAccount
+from .models import CustomUser, OnlineAccount, Administrator
 from  webapps2024.utils.choices import CURRENCY_CHOICES
 
 class UserRegistrationForm(UserCreationForm):
     full_name = forms.CharField(required=True)
     email = forms.EmailField(required=True)
-    
+
     class Meta:
         model = CustomUser
         fields = (
+            "username",
             "email",
             "password1",
             "password2",
@@ -21,27 +22,55 @@ class UserRegistrationForm(UserCreationForm):
         first_name, last_name = full_name.split(" ", 1)
         user.first_name = first_name
         user.last_name = last_name
-        user.username = first_name.lower()  # Set username as lowercase first name
         if commit:
             user.save()
         return user
+    
+    # adding widgets
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['full_name'].widget.attrs.update({
+            'class': 'form-control', 'placeholder': 'Enter First and Last Name'
+        })
+        self.fields['username'].widget.attrs.update({
+            'class': 'form-control', 'placeholder': 'Enter your username'
+        })
+        self.fields['email'].widget.attrs.update({
+            'class': 'form-control', 'placeholder': 'Enter your email'
+        })
+        self.fields['password1'].widget.attrs.update({
+            'class': 'form-control', 'placeholder': 'Enter your password'
+        })
+        self.fields['password2'].widget.attrs.update({
+            'class': 'form-control', 'placeholder': 'Confirm your password'
+        })
+
+
+
+class AdministratorCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Administrator
+        fields = ['username', 'email', 'password1', 'password2']  
+
 
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['full_name'].widget.attrs.update({
-             'placeholder': 'John Doe'
-        })
         
+        self.fields['username'].widget.attrs.update({
+            'class': 'form-control', 'placeholder': 'Enter your username'
+        })
         self.fields['email'].widget.attrs.update({
-            'placeholder': 'example@gmail.com'
+            'class': 'form-control', 'placeholder': 'Enter your email'
         })
         self.fields['password1'].widget.attrs.update({
-            'class': 'form-control', 'placeholder': 'Password'
+            'class': 'form-control', 'placeholder': 'Enter your password'
         })
         self.fields['password2'].widget.attrs.update({
-            'class': 'form-control', 'placeholder': 'Confirm Password'
+            'class': 'form-control', 'placeholder': 'Confirm your password'
         })
+
+
 
 
 class OnlineAccountForm(forms.ModelForm):

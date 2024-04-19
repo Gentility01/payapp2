@@ -3,7 +3,7 @@ from register.models import BankAccount, OnlineAccount
 from payapp.models import TransactionHistory, PaymentRequest, Card, Transaction
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from payapp.forms import AddBankForm, CardForm, DirectPaymentForm, PaymentRequestForm
+from payapp.forms import AddBankForm, CardForm, DirectPaymentForm, PaymentRequestForm, WithdrawalForm
 from django.urls import reverse
 from decimal import Decimal
 from register.models import CustomUser
@@ -257,6 +257,17 @@ def card_deposit_receipt_view(request, pk):
 
 @login_required(login_url=reverse_lazy("user_login"))
 def directpayment_or_send_money(request):
+    """
+    This function handles the direct payment or send money process. It requires the user to be logged in, otherwise it redirects to the user login page.
+    
+    Parameters:
+    - request: The HTTP request object.
+    
+    Returns:
+    - If the request method is POST, it validates the DirectPaymentForm and if valid, stores the form data in the session for the next page. It then redirects to the "directpayment_confirmation" page.
+    - If the form is not valid, it displays an error message and renders the 'payapp/direct_payment_form.html' template with the form as context.
+    - If the request method is not POST, it renders the 'payapp/directpayment_or_send_money.html' template with an empty DirectPaymentForm as context.
+    """
     if request.method == "POST":
         form = DirectPaymentForm(request.POST)
         if form.is_valid():
@@ -274,7 +285,12 @@ def directpayment_or_send_money(request):
         return render(request, "payapp/directpayment_or_send_money.html", {'form': form})
 
 
+
+
+@login_required(login_url=reverse_lazy("user_login"))
 def directpayment_confirmation(request):
+    
+    
     payment_data = request.session.get('payment_data', {})
     recipient_email = payment_data.get('recipient_email')
 
@@ -400,3 +416,120 @@ def payment_request_list_view(request):
     payment_requests = PaymentRequest.objects.filter(recipient=request.user).order_by('-created_at')
 
     return render(request, "payapp/payment_request_list.html", {"payment_requests": payment_requests})
+
+
+
+
+
+@transaction.atomic
+@login_required(login_url=reverse_lazy('register:login_view'))
+def respond_to_payment_request(request, pk):
+    try:
+        payment_request = PaymentRequest.objects.get(pk=pk)
+    except PaymentRequest.DoesNotExist:
+        messages.error(request, 'Payment request not found!')
+        return redirect('payment_failed')
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        print("action", action, )
+        if action == 'accepted':
+            try:
+                sender_account = OnlineAccount.objects.get(user=payment_request.sender)
+                recipient_account = OnlineAccount.objects.get(user=payment_request.recipient)
+
+                if recipient_account.balance >= payment_request.amount:
+                    sender_account.balance += payment_request.amount
+                    recipient_account.balance -= payment_request.amount
+                    sender_account.save()
+                    recipient_account.save()
+                    #---------------------------
+                    payment_request.status = 'SUCCESS'  # Update status to SUCCESS
+                    payment_request.save()  # Save the updated status
+                    #---------------------------
+                    messages.success(request, 'Payment request accepted!')
+                    TransactionHistory.objects.create(sender=payment_request.sender, recipient=payment_request.recipient, 
+                    status="✔️", amount=payment_request.amount, description="Payment Request Accepted")
+                    TransactionHistory.objects.create(sender=payment_request.recipient, recipient=payment_request.sender, 
+                    status="📥", amount=payment_request.amount, description="Payment Request Accepted" )
+                else:
+                    messages.error(request, 'Insufficient balance to fulfill the payment request.')
+                    return redirect('payment_failed')
+            except OnlineAccount.DoesNotExist:
+                messages.error(request, 'One of the accounts does not exist.')
+        elif action == 'rejected':
+            #---------------------------
+            payment_request.status = 'FAILED'  # Update status to FAILED
+            payment_request.save()  # Save the updated status
+            #---------------------------
+            messages.info(request, 'Payment request rejected!')
+        else:
+            messages.error(request, 'Invalid action.')
+
+        return redirect('payment_request_list')
+
+    return render(request, 'respond_to_payment_request.html', {'payment_request': payment_request})
+
+
+
+
+
+@login_required(login_url=reverse_lazy('register:login_view'))
+def withdrawal_view(request):
+    if request.method == 'POST':
+        form = WithdrawalForm(request.POST, user=request.user)
+        if form.is_valid():
+            # Store withdrawal details in session variables
+            bank_account_id = form.cleaned_data['bank_account'].id
+            amount = float(form.cleaned_data['amount'])  # Convert Decimal to float
+            request.session['withdrawal_details'] = {
+                'bank_account_id': bank_account_id,
+                'amount': amount,
+            }
+            return redirect('withdraw_money_confirm')
+    else:
+        form = WithdrawalForm(user=request.user)
+    return render(request, 'payapp/withdraw_money.html', {'form': form})
+
+
+def withdraw_money_confirm(request):
+    if request.method == 'POST':
+        form = WithdrawalForm(request.POST, user=request.user)
+        if form.is_valid():
+            bank_account = form.cleaned_data['bank_account']
+            amount = form.cleaned_data['amount']
+            online_account = OnlineAccount.objects.get(user=request.user)
+            if online_account.balance >= amount:
+                online_account.balance -= amount
+                online_account.save()
+
+                # Record the transaction history
+                TransactionHistory.objects.create(
+                    sender=request.user, description='Withdrawal to bank account',
+                    status='✔️', amount=amount, bank_account=bank_account)
+
+                del request.session['withdrawal_details']
+                messages.success(request, 'Withdrawal successful')
+                return redirect('withdraw_success')
+            else:
+                messages.warning(request, 'Insufficient balance')
+    else:
+        withdrawal_details = request.session.get('withdrawal_details')
+        if withdrawal_details:
+            bank_account_id = withdrawal_details['bank_account_id']
+            bank_account = BankAccount.objects.get(pk=bank_account_id)
+            form_data = {
+                'bank_account': bank_account,
+                'amount': withdrawal_details['amount'],
+            }
+            form = WithdrawalForm(user=request.user, initial=form_data)
+            for field in form.fields.values():
+                field.widget.attrs['disabled'] = True
+        else:
+            messages.error(request, 'Withdrawal details not found')
+            form = WithdrawalForm(user=request.user)
+
+    return render(request, 'payapp/withdraw_confirm.html', {'form': form, 'bank_account': bank_account})
+
+def withdraw_success(request):
+    return render(request, "payapp/withdraw_success.html")

@@ -1,0 +1,97 @@
+{% extends 'dashboard_nav.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Admin Hero section-->
+
+<!-- Admin End of Hero section-->
+
+
+
+<!-- Admin Content Section  -->
+<div id="content" class="py-4">
+    <div class="container">
+        <div class="row">
+            {% include '_leftbar.html' %}
+
+            <!-- Middle Panel  -->
+            <div class="col-lg-9">
+                <div class="profile-content">
+                    <h3 class="admin-heading bg-offwhite">
+                        <p>Notifications</p>
+
+                    </h3>
+
+                    {% include 'messages/alert.html' %}
+
+                    <!-- Transaction List -->
+                    <div class="transaction-area">
+                        {% for payment_request in payment_requests %}
+
+                       <p>
+                        <div class="card">
+
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:black">A new Transaction Request from
+                                    {{ payment_request.sender.first_name.capitalize }}
+                                    {{payment_request.sender.last_name.capitalize }}
+                                    amount: {{ payment_request.amount }} {{ payment_request.currency }}
+                                </h5>
+                                <p class="card-text muted" style="color:black">
+                                    {{ payment_request.sender.first_name.capitalize }}'s message:
+                                    "{{ payment_request.message }}"</p>
+
+                                <br>
+                                {% if payment_request.status == 'pending' %}
+                                
+                                <form method="post" action="{% url 'respond_to_payment_request' payment_request.pk %}">
+                                    {% csrf_token %}
+                                    <button class="btn btn-default" type="submit" name="action" value="accepted">
+                                        <span class="bh" style="top:52.4px; left:189.5px;"></span>
+                                        <span>Accept</span>
+                                    </button>
+
+                                    <button class="btn btn-default" type="submit" name="action" value="rejected">
+                                        <span class="bh" style="top:52.4px; left:189.5px;"></span>
+                                        <span>Decline</span>
+                                    </button>
+                                </form>
+                                {% endif %}
+                                
+                                {% if payment_request.status == "pending" %}
+                                ...
+                                {% elif payment_request.status == "SUCCESS" %}
+                                you accepted to give {{ payment_request.amount}} to {{payment_request.sender.username}}
+                                {% else %}
+                                you rejected this request
+                                
+                                    
+                                {% endif %}
+                                    
+                                
+                            </div>
+                        </div>
+                       </p>
+                        {% endfor %} <br>
+
+
+
+
+
+                    </div>
+                    <!-- Transaction List End -->
+
+
+
+                </div>
+                <!-- Recent Activity End -->
+            </div>
+            <!-- Middle Panel End -->
+        </div>
+    </div>
+</div>
+<!-- Content end -->
+
+
+{% endblock content %}

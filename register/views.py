@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from register.forms import UserRegistrationForm, OnlineAccountForm
+from register.forms import UserRegistrationForm, OnlineAccountForm, AdministratorCreationForm
 from register.models import OnlineAccount
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
@@ -37,6 +37,20 @@ def user_registration_page(request):
     }
     return render(request, "register/user_registration.html", context)
 
+
+def administrator_create_view(request):
+    if request.method == 'POST':
+        form = AdministratorCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.is_staff = True
+            user.is_superuser = True
+            user.save()
+            login(request, user)  # Log in the user immediately after registration
+            return redirect('admin:index')
+    else:
+        form = AdministratorCreationForm()
+    return render(request, 'register/admin_register.html', {'form': form})
 
 
 @login_required(login_url='/account/login')
