@@ -47,7 +47,7 @@
                                     <div class="col pay-date">
                                         {% comment %} <span class="date">15</span> {% endcomment %}
                                         <span class="pay-month">{{transaction.created_at|date:"j M"}} <br>
-                                            <small>{{ transaction.created_at|custom_timesince }}</small>
+                                            <small>{{ transaction.created_at|date:' H:i' }}</small>
                                         </span>
                                         
                                     </div>

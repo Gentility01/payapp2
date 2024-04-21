@@ -3,32 +3,32 @@ from .models import Transaction, CurrencyConversion, TransactionHistory, Card, P
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
-    list_display = ['sender', 'recipient', 'amount', 'get_currency', 'transaction_type']
+    list_display = ['sender', 'recipient', 'amount']
     search_fields = ['sender__username', 'recipient__username']
     list_filter = ['transaction_type']
 
-    def get_currency(self, obj):
-        return obj.currency
-    get_currency.short_description = 'Currency'
+    # def get_currency(self, obj):
+    #     return obj.currency
+    # get_currency.short_description = 'Currency'
 
 @admin.register(CurrencyConversion)
 class CurrencyConversionAdmin(admin.ModelAdmin):
     list_display = ['currency_from', 'currency_to', 'exchange_rate']
 
 class TransactionHistoryAdmin(admin.ModelAdmin):
-    list_display = ['sender', 'recipient', 'bank_account', 'amount', 'description', 'status', 'get_acceptance_status']
+    list_display = ['sender', 'recipient', 'bank_account', 'amount', 'description', 'status']
     search_fields = ['sender__username', 'recipient__username', 'description']
     list_filter = ['status']
 
-    def get_acceptance_status(self, obj):
-        if obj.status == 'Accepted':
-            return 'Accepted'
-        elif obj.status == 'Rejected':
-            return 'Rejected'
-        else:
-            return 'Pending'
+    # def get_acceptance_status(self, obj):
+    #     if obj.status == 'Accepted':
+    #         return 'Accepted'
+    #     elif obj.status == 'Rejected':
+    #         return 'Rejected'
+    #     else:
+    #         return 'Pending'
 
-    get_acceptance_status.short_description = 'Acceptance Status'
+    # get_acceptance_status.short_description = 'Acceptance Status'
 
     def get_currency(self, obj):
         return obj.currency
