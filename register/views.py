@@ -8,6 +8,7 @@ from django.urls import reverse
 from webapps2024.utils.manual_exchange import MANUAL_EXCHANGE_RATES
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 
 # Create your views here.\
@@ -53,7 +54,8 @@ def administrator_create_view(request):
     return render(request, 'register/admin_register.html', {'form': form})
 
 
-@login_required(login_url='/account/login')
+
+@login_required(login_url=reverse_lazy("user_login"))
 def online_account_setup(request):
     
     # Process the form
@@ -125,6 +127,6 @@ def user_logout(request):
     else:
         return render(request, "register/logout.html")
 
-
+@login_required(login_url=reverse_lazy("user_login"))
 def user_dashboard(request):
     return render(request, "register/user_dashboard.html")

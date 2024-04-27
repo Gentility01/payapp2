@@ -2,16 +2,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from register.models import BankAccount, OnlineAccount
 from payapp.models import TransactionHistory, PaymentRequest, Card, Transaction
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
+
 from payapp.forms import AddBankForm, CardForm, DirectPaymentForm, PaymentRequestForm, WithdrawalForm
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from decimal import Decimal
 from register.models import CustomUser
 from django.db import transaction
 from django.contrib import messages
+from webapps2024.utils.manual_exchange import MANUAL_EXCHANGE_RATES
 # Create your views here.
-
-
 
 
 
@@ -271,26 +270,27 @@ def directpayment_or_send_money(request):
     if request.method == "POST":
         form = DirectPaymentForm(request.POST)
         if form.is_valid():
-            # store form data in sessions for next page
+            # Retrieve form data
             payment_data = form.cleaned_data
-            # convert decimal objects to string
+            # Ensure currency is added to payment_data
+            payment_data['currency'] = 'USD'  # Replace 'USD' with the default currency or fetch it from the form
+            # Convert decimal objects to string
             payment_data['amount'] = str(payment_data['amount'])
-            request.session['payment_data'] = payment_data  # store data directly in session
+            # Store data in session
+            request.session['payment_data'] = payment_data
+            # Redirect to confirmation page
             return redirect("directpayment_confirmation")
         else:
+            # Form is not valid, display errors
             messages.error(request, "Please correct the errors below.")
             return render(request, 'payapp/direct_payment_form.html', {'form': form})
     else:
+        # Render form for user input
         form = DirectPaymentForm()
         return render(request, "payapp/directpayment_or_send_money.html", {'form': form})
 
-
-
-
 @login_required(login_url=reverse_lazy("user_login"))
 def directpayment_confirmation(request):
-    
-    
     payment_data = request.session.get('payment_data', {})
     recipient_email = payment_data.get('recipient_email')
 
@@ -312,6 +312,7 @@ def directpayment_confirmation(request):
         if form.is_valid():
             sender = request.user
             amount = payment_data.get('amount')
+            currency = payment_data.get('currency')
 
             # Check if the recipient email is the same as the sender's email
             if sender.email == recipient_email:
@@ -325,6 +326,16 @@ def directpayment_confirmation(request):
                 messages.error(request, "Insufficient funds.")
                 return redirect('payment_failed')
 
+            # Check if currency conversion is needed
+            if sender_account.currency != recipient.onlineaccount.currency:
+                # Currency conversion needed
+                exchange_rate = MANUAL_EXCHANGE_RATES.get((sender_account.currency, recipient.onlineaccount.currency))
+                if exchange_rate is None:
+                    messages.error(request, "Exchange rate not found for currencies.")
+                    return redirect('payment_failed')
+                amount = float(amount)
+                amount *= exchange_rate
+
             # Deduct the amount from the sender's account and add it to the recipient's account within a single transaction
             with transaction.atomic():
                 sender_account.balance -= int(amount)
@@ -334,7 +345,7 @@ def directpayment_confirmation(request):
                 recipient_account.save()
 
                 # Create a transaction record for the payment
-                Transaction.objects.create(sender=sender, recipient=recipient, amount=amount, transaction_type="direct_payment")
+                Transaction.objects.create(sender=sender, recipient=recipient, amount=amount, currency=currency, transaction_type="direct_payment")
 
                 # Create transaction history records for both sender and recipient
                 TransactionHistory.objects.create(sender=sender, recipient=recipient, status="✔️", amount=amount, description="Direct payment (sent)")

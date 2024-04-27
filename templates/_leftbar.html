@@ -3,7 +3,12 @@
 
     <div class="widget admin-widget">
         <i class="fas fa-coins admin-overlay-icon"></i>
-        <h2>Balance ${{ online_account.balance}}</h2>
+        <h2>Balance 
+            {% if online_account.currency == 'USD' %}${{ online_account.balance}}
+            {% elif online_account.currency == 'EUR' %}€{{ online_account.balance}}
+            {% elif online_account.currency == 'GBP' %}£{{ online_account.balance}}
+        </h2>
+            {% endif %}
         
     </div>
 

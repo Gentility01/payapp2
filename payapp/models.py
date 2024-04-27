@@ -1,6 +1,6 @@
 import auto_prefetch
 from django.db import models
-
+from webapps2024.utils.manual_exchange import MANUAL_EXCHANGE_RATES
 from webapps2024.utils.choices import CURRENCY_CHOICES, TRASACTION_TYPE_CHOICES, CARD_TYPE, TRANSACTION_STATUS
 # from register.models import User
 from django.conf import settings
@@ -12,9 +12,34 @@ class Transaction(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     transaction_type  = models.CharField(max_length=11, choices=TRASACTION_TYPE_CHOICES.choices)
     status = models.CharField(max_length=11, choices=TRANSACTION_STATUS.choices, blank=True, null=True)
+    models.CharField(max_length=3, choices=CURRENCY_CHOICES.choices)  
+    currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES.choices)
     
     class Meta:
         verbose_name_plural = "Transactions"
+
+    def perform_transaction(self):
+        """
+        Perform the transaction and handle currency conversion if necessary.
+        """
+        if self.sender.onlineaccount.currency != self.recipient.onlineaccount.currency:
+            # Currency conversion needed
+            exchange_rate = MANUAL_EXCHANGE_RATES.get((self.sender.onlineaccount.currency, self.recipient.onlineaccount.currency))
+            if exchange_rate is None:
+                raise ValueError("Exchange rate not found for currencies")
+            converted_amount = self.amount * exchange_rate
+            self.amount = converted_amount
+            self.currency = self.recipient.onlineaccount.currency
+        
+        # Update sender's and receiver's account balances
+        self.sender.onlineaccount.balance -= self.amount
+        self.recipient.onlineaccount.balance += self.amount
+        self.sender.onlineaccount.save()
+        self.recipient.onlineaccount.save()
+        
+        # Mark the transaction as completed
+        self.status = 'completed'
+        self.save()
 
 
 
