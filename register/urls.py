@@ -1,7 +1,8 @@
 from django.urls import path
 from register.views import (
     user_registration_page, online_account_setup, 
-    user_login, user_logout, user_dashboard, administrator_create_view
+    user_login, user_logout, user_dashboard, administrator_create_view,
+    ConvertCurrencyAPIView
 )
 
 
@@ -12,4 +13,11 @@ urlpatterns = [
     path("login", user_login, name="user_login"),
     path("logout", user_logout, name="user_logout"),
     path("dashboard", user_dashboard, name="user_dashboard"),
+
+    # API path
+    path('conversion/<str:currency1>/<str:currency2>/<str:amount_of_currency1>/', ConvertCurrencyAPIView.as_view(), name='conversion'),
+    # http://example.com/conversion/USD/EUR/100/
+# 
 ]
+
+

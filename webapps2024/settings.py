@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-rj+7_4a6(@pp_q2tq0ksh=kw5s=hi$64&!e6gi#wa)o92&72uj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -46,11 +46,13 @@ INSTALLED_APPS = [
     "register.apps.RegisterConfig",
 
     #third party apps
+    "rest_framework",
     
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -143,3 +145,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "webapps2024/static")]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "register.CustomUser"
+
+
+#   white noice 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

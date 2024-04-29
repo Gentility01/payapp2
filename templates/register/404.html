@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    
+
+    
+        <!-- 404 Error section start -->
+        <section class="error-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-11 m-auto">
+                        <img src="{% static 'images/404.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-9 m-auto text-center">
+                        <div class="sec-heading">
+                            <h2 class="sec-title">Oops! Page Not Found</h2>
+                            <p class="sec-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <a href="home-01.html" class="btn btn-filled btn-round"><span class="bh"></span> <span>Back to Home</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 404 Error section end -->
+
+        {% endblock content %}
